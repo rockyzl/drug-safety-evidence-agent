@@ -12,8 +12,8 @@
 ## 技术如何分工
 
 - **LangGraph**：安排“计划检索、取资料、写草稿、复核、返回”的步骤，并在步骤之间传递状态。
-- **模型 API**：模型决定检索哪些问题、从查到的资料里整理结论，并在另一次调用中复核。
-- **Chroma 与 embeddings**：把段落和问题转换成向量，找到语义接近的内容；系统同时参考关键词重合度。
+- **Vertex AI（Gemini）模型 API**：模型决定检索哪些问题、从查到的资料里整理结论，并在另一次调用中复核。
+- **Chroma 与 Vertex text-embedding-005**：把段落和问题转换成向量，找到语义接近的内容；系统同时参考关键词重合度。
 - **Python 检查代码**：确认引用编号确实存在、引用文字确实在原文中、资料日期没有超出用户限制。
 - **FastAPI 与 Cloud Run**：提供网页与后台服务，把实际运行进度传给浏览器。
 - **Paper MCP**：用于设计界面。它不负责检索资料，也不执行 Agent。
@@ -22,9 +22,9 @@
 
 “I built an independent prototype to practice evidence-grounded agent workflows. The model plans bounded searches, drafts claims from public sources, and checks support before the result is shown. I also added deterministic citation and date checks, plus a small evaluation suite.”
 
-接着说明边界：“The live version uses OpenAI. I implemented a Bedrock Converse adapter, but have not yet verified it with an AWS account. This is a learning project, not production pharmacovigilance experience.”
+接着说明边界：“The live version uses Vertex AI. I implemented a Bedrock Converse adapter, but have not yet verified it with an AWS account. This is a learning project, not production pharmacovigilance experience.”
 
-不要把“通过引用检查”说成“结论百分之百正确”。这次 30 个问题的评测能证明实际调用、出处检查、日期过滤和部分拒答行为运转正常，不能代替专业医学验证。
+不要把“通过引用检查”说成“结论百分之百正确”。历史 OpenAI 回归评测完成了 36 个问题中的 34 个，另两个遇到账户额度问题；该结果不能直接当作 Vertex 的效果指标。Vertex 另做了少量真实运行检查。这些检查不能代替专业医学验证。
 
 ## 资料是否实时联网？
 

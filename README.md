@@ -14,60 +14,62 @@ A working, source-linked drug-safety research demo built as an independent learn
 3. Check **Source coverage**: documents retrieved and claims accepted are counted separately. Expand a source under a claim to inspect its context.
 4. Inspect any withheld claims and the agent's tool calls.
 
-The live model is **OpenAI gpt-4.1-mini**, with **text-embedding-3-small** embeddings. A real LangGraph workflow selects bounded search-tool calls, retrieves evidence from Chroma, drafts cited claims, and checks each claim before including it. This is a research prototype, not clinical decision support.
+The live model is **Vertex AI google/gemini-3.8-flash**, with **Vertex text-embedding-005** embeddings. A real LangGraph workflow selects bounded search-tool calls, retrieves evidence from Chroma, drafts cited claims, and checks each claim before including it. This is a research prototype, not clinical decision support.
 
 ## Stack and real integrations
 
 | Component | Implementation |
 |---|---|
 | Agent workflow | LangGraph, validated model-generated search plan, bounded read-only tool dispatch |
-| Generation and verification | OpenAI API, separate drafting and support-assessment calls |
+| Generation and verification | Vertex AI via its OpenAI-compatible API; separate drafting and support-assessment calls |
 | Retrieval | Chroma vectors + lexical token overlap, reciprocal rank fusion |
 | Evidence | FDA communication, selected DailyMed label sections, two PubMed abstracts |
 | Provenance | Source URLs, publication/version dates, SHA-256 hashes, stable passage IDs |
 | Checks | Reference membership, exact quote, date cutoff, model-assessed support |
 | Web | FastAPI, server-sent events, responsive HTML/CSS/JS designed in Paper |
-| Hosting | Google Cloud Run, dedicated service account, Secret Manager |
+| Hosting | Google Cloud Run, dedicated service account, Google ADC authentication |
 | AWS Bedrock | Converse adapter implemented and contract-tested; **not live-verified** |
 
 No full source corpus or API key is committed. The ingestion script fetches the public source snapshots. Public manifests record what was used. Research papers are abstract-only; this is not a systematic review or comprehensive search service.
 
 ## Run locally
 
-Requirements: Python 3.11+, [uv](https://docs.astral.sh/uv/), an OpenAI API key in your local environment.
+Requirements: Python 3.11+, [uv](https://docs.astral.sh/uv/), an authenticated `gcloud` CLI and a Google Cloud project with Vertex AI enabled and access to the configured models. The caller needs Vertex AI invocation permissions. The local launcher captures a short-lived access token without printing it; Cloud Run uses its service account through ADC.
 
 ```bash
 uv sync --frozen
-# Set OPENAI_API_KEY securely in your environment; never commit it.
+export GOOGLE_CLOUD_PROJECT=your-project-id
 uv run python scripts/ingest.py
-uv run python scripts/index.py
-uv run uvicorn app.main:app --host 127.0.0.1 --port 8186
+uv run python scripts/with_google_login.py scripts/index.py
+uv run python scripts/with_google_login.py -m uvicorn app.main:app --host 127.0.0.1 --port 8186
 ```
 
 Open http://127.0.0.1:8186. Ingestion uses cached documents unless called with `--refresh`. Indexing and live queries incur model/embedding API charges. When refreshing the corpus, also re-run indexing, evaluation and regenerate the saved example so their provenance remains aligned. The existing report describes the checked-in manifest hashes, not future snapshots.
 
 ```bash
 uv run pytest -q
-uv run python scripts/evaluate.py
+uv run python scripts/with_google_login.py scripts/vertex_smoke.py
 uv run playwright install chromium
-uv run python scripts/browser_smoke.py
+uv run python scripts/browser_smoke.py http://127.0.0.1:8186
 ```
 
-The public result and evaluation files are included so a clone can display the recorded example immediately after index preparation. Live requests remain actual API calls.
+The public result and evaluation files are included so a clone can display the recorded example immediately after index preparation. Live requests remain actual API calls. Restart the local launcher if its short-lived token expires. To use Google ADC directly, export the configuration in `.env.example` with your project and run the Python entry points without the launcher. The application does not automatically load `.env` files.
+
+An optional OpenAI generation/embedding provider remains supported; it requires an available API quota and the corresponding rebuilt index. Vertex and OpenAI use separate Chroma collections because their embedding spaces differ. The checked-in regression report records the earlier OpenAI configuration, not Vertex accuracy.
 
 ## Optional Bedrock generation
 
-Configure AWS credentials using your normal local login/profile; do not paste keys into code. Set `EVIDENCE_PROVIDER=bedrock`, `BEDROCK_MODEL_ID` to an enabled model/inference profile, and `AWS_REGION`. The adapter uses [Bedrock Converse](https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_Converse.html). The role needs permission to invoke the selected model. OpenAI embeddings are still required. This adapter has a stubbed contract test, not a verified AWS deployment.
+Configure AWS credentials using your normal local login/profile; do not paste keys into code. Set `EVIDENCE_PROVIDER=bedrock`, `BEDROCK_MODEL_ID` to an enabled model/inference profile, and `AWS_REGION`. The adapter uses [Bedrock Converse](https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_Converse.html). The role needs permission to invoke the selected model. Also configure `EMBEDDING_PROVIDER` and `EMBEDDING_MODEL` for either Vertex or OpenAI and build that index; there is no AWS embedding adapter. This adapter has a stubbed contract test, not a verified AWS deployment.
 
 ## Deployment
 
-`scripts/deploy.sh` builds a private image and deploys Cloud Run. Set `CLOUD_PROJECT`; create an Artifact Registry repository `evidence-desk`, runtime service account `evidence-desk`, and Secret Manager secret `evidence-desk-openai-key`. Grant that account secret accessor **on that one secret**. The script uses one worker, at most one instance, and scales to zero.
+`scripts/deploy.sh` builds a private image and deploys Cloud Run using Vertex generation and embeddings. Set `CLOUD_PROJECT`; create an Artifact Registry repository `evidence-desk` and runtime service account `evidence-desk`, with `roles/aiplatform.user` on the project. Prepare the Vertex index and run the runtime smoke script before building. No model API key is embedded or mounted; the service uses ADC. The script removes the previous OpenAI key mount, uses one worker, at most one instance, and scales to zero.
 
 Anonymous usage is limited to two active runs, 20 runs/hour and 80/day per process. Counters reset after restart; these are not guaranteed spending limits. Change `DAILY_RUN_LIMIT` for a smaller daily allowance. Public access is intentional for the portfolio demo.
 
 ## Validation and limits
 
-34/36 regression cases completed; 37 of 138 drafted claims were withheld and 6/6 out-of-scope prompts produced no published claims. Two provider failures were retained in the report history; a subsequent probe reported `credit_balance_exhausted`. Recorded examples remain available while live requests require an available model quota. These are engineering checks, **not clinical accuracy scores**. The same model family generates and verifies. [Full evaluation](docs/evaluation.md).
+The historical **OpenAI** regression run completed 34/36 cases; 37 of 138 drafted claims were withheld and 6/6 out-of-scope prompts produced no published claims. Two provider failures remain in that report; a subsequent probe reported `credit_balance_exhausted`. The live service now uses **Vertex AI**, verified separately by the small runtime suite in [vertex-smoke.json](reports/vertex-smoke.json). The earlier regression scores do not transfer to the new model. These are engineering checks, **not clinical accuracy scores**. The same model family generates and verifies. [Full evaluation](docs/evaluation.md).
 
 No patient information, internal pharmaceutical data, safety submissions or production pharmacovigilance integrations are used. Do not submit patient or confidential information. Each live run searches a **preloaded Chroma index**, not the live web. Date filtering excludes newer indexed versions; it does not reconstruct historical pages. Review original sources before using a result.
 

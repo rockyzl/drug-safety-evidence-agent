@@ -63,7 +63,8 @@ def config():
     return {'pipeline_version':PIPELINE_VERSION, 'default_question':DEFAULT_QUESTION,
             'retrieval_mode':'preloaded_index','snapshot_loaded_at':store.corpus['retrieved_at'],
             'provider': os.getenv('EVIDENCE_PROVIDER', 'openai'),
-            'model': os.getenv('BEDROCK_MODEL_ID', '') if os.getenv('EVIDENCE_PROVIDER') == 'bedrock' else os.getenv('EVIDENCE_MODEL', 'gpt-4.1-mini'),
+            'model': os.getenv('BEDROCK_MODEL_ID', '') if os.getenv('EVIDENCE_PROVIDER') == 'bedrock' else os.getenv('EVIDENCE_MODEL', 'google/gemini-3.8-flash' if os.getenv('EVIDENCE_PROVIDER')=='vertex' else 'gpt-4.1-mini'),
+            'embedding_provider':store.embedding_provider,'embedding_model':store.embedding_model,
             'sources': list(store.sources.values()), 'passage_count': len(store.passages),
             'bedrock_status': 'Adapter available; not live-verified in this deployment.'}
 
@@ -79,7 +80,14 @@ def example():
 @app.get('/api/evaluation')
 def evaluation():
     path = ROOT/'reports/evaluation.json'
-    return json.loads(path.read_text()) if path.exists() else {'status': 'Not yet evaluated.'}
+    if not path.exists():
+        return {'status':'Not yet evaluated.'}
+    report=json.loads(path.read_text())
+    report['scope_note']='Regression report for '+report['provider']+' / '+report['model']+'. Results do not automatically transfer to a different model.'
+    smoke=ROOT/'reports/vertex-smoke.json'
+    if smoke.exists():
+        report['runtime_smoke']=json.loads(smoke.read_text())
+    return report
 
 
 @app.post('/api/ask')

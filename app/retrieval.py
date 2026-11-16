@@ -1,6 +1,7 @@
 import json
 import os
 import re
+import httpx
 from pathlib import Path
 import chromadb
 from chromadb.config import Settings
@@ -15,23 +16,37 @@ class EvidenceStore:
         self.passages = {p['id']: p for p in self.corpus['passages']}
         self.sources = {s['id']: s for s in self.corpus['sources']}
         self.client = chromadb.PersistentClient(path=str(DATA/'chroma'), settings=Settings(anonymized_telemetry=False))
-        self.collection = self.client.get_or_create_collection('evidence-v1', metadata={"hnsw:space": "cosine"})
-        self.embedding_model = os.getenv('EMBEDDING_MODEL', 'text-embedding-3-small')
+        self.embedding_provider=os.getenv('EMBEDDING_PROVIDER','vertex' if os.getenv('EVIDENCE_PROVIDER')=='vertex' else 'openai')
+        if self.embedding_provider not in ('vertex','openai'):
+            raise ValueError('Unsupported embedding provider')
+        self.embedding_model = os.getenv('EMBEDDING_MODEL', 'text-embedding-005' if self.embedding_provider=='vertex' else 'text-embedding-3-small')
+        self.collection = self.client.get_or_create_collection('evidence-vertex-v1' if self.embedding_provider=='vertex' else 'evidence-v1', metadata={"hnsw:space": "cosine"})
 
-    def embeddings(self, texts):
+    def embeddings(self, texts, task='RETRIEVAL_QUERY'):
+        if self.embedding_provider=='vertex':
+            from .cloud_auth import access_token, project_id
+            region=os.getenv('VERTEX_EMBEDDING_LOCATION','us-central1')
+            url=f'https://{region}-aiplatform.googleapis.com/v1/projects/{project_id()}/locations/{region}/publishers/google/models/{self.embedding_model}:predict'
+            vectors=[]
+            with httpx.Client(timeout=45) as client:
+                for start in range(0,len(texts),5):
+                    response=client.post(url,headers={'Authorization':'Bearer '+access_token()},json={'instances':[{'content':text,'task_type':task} for text in texts[start:start+5]]})
+                    response.raise_for_status()
+                    vectors.extend(row['embeddings']['values'] for row in response.json()['predictions'])
+            return vectors
         response = OpenAI(timeout=40,max_retries=1).embeddings.create(model=self.embedding_model, input=texts)
         return [x.embedding for x in response.data]
 
     def index(self):
         records = list(self.passages.values())
-        vectors = self.embeddings([p['section']+'\n'+p['text'] for p in records])
+        vectors = self.embeddings([p['section']+'\n'+p['text'] for p in records],task='RETRIEVAL_DOCUMENT')
         old_ids = set(self.collection.get()['ids']) - set(self.passages)
         if old_ids:
             self.collection.delete(ids=list(old_ids))
         self.collection.upsert(ids=[p['id'] for p in records], embeddings=vectors,
             documents=[p['text'] for p in records],
             metadatas=[{'source_id':p['source_id'],'source_type':p['source_type'],'date_int':int(p['published'].replace('-',''))} for p in records])
-        (DATA/'index-manifest.json').write_text(json.dumps({'embedding_model':self.embedding_model,'passage_count':len(records),'corpus_sha256':json.loads((DATA/'source-manifest.json').read_text())['corpus_sha256']},indent=2)+'\n')
+        (DATA/'index-manifest.json').write_text(json.dumps({'embedding_provider':self.embedding_provider,'embedding_model':self.embedding_model,'passage_count':len(records),'corpus_sha256':json.loads((DATA/'source-manifest.json').read_text())['corpus_sha256']},indent=2)+'\n')
 
     def search(self, query, as_of, source_type='all', limit=6):
         eligible = {k:p for k,p in self.passages.items() if p['published']<=as_of and (source_type=='all' or p['source_type']==source_type)}

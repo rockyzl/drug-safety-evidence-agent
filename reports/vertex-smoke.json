@@ -1,0 +1,141 @@
+{
+  "created_at": "2026-11-16T04:41:18.659891+00:00",
+  "provider": "vertex",
+  "model": "google/gemini-3.8-flash",
+  "embedding_provider": "vertex",
+  "embedding_model": "text-embedding-005",
+  "completed_cases": 4,
+  "total_cases": 4,
+  "cases": [
+    {
+      "id": "default_brief",
+      "provider": "vertex",
+      "model": "google/gemini-3.8-flash",
+      "run_id": "39ae3102f54d42ecb6f84c3ddcab8b62",
+      "coverage": [
+        {
+          "source_type": "research",
+          "title": "Research evidence",
+          "retrieved_sources": 2,
+          "supported_claims": 2
+        },
+        {
+          "source_type": "regulatory",
+          "title": "FDA regulatory communication",
+          "retrieved_sources": 1,
+          "supported_claims": 2
+        },
+        {
+          "source_type": "label",
+          "title": "Prescribing information",
+          "retrieved_sources": 1,
+          "supported_claims": 2
+        }
+      ],
+      "claims_published": 7,
+      "model_calls": 3,
+      "seconds": 24.04,
+      "checks_passed": true
+    },
+    {
+      "id": "historical_cutoff",
+      "provider": "vertex",
+      "model": "google/gemini-3.8-flash",
+      "run_id": "fc46e5b0f97f43479bf415dd65a81fd9",
+      "coverage": [
+        {
+          "source_type": "research",
+          "title": "Research evidence",
+          "retrieved_sources": 0,
+          "supported_claims": 0
+        },
+        {
+          "source_type": "regulatory",
+          "title": "FDA regulatory communication",
+          "retrieved_sources": 1,
+          "supported_claims": 5
+        },
+        {
+          "source_type": "label",
+          "title": "Prescribing information",
+          "retrieved_sources": 0,
+          "supported_claims": 0
+        }
+      ],
+      "claims_published": 5,
+      "model_calls": 3,
+      "seconds": 17.07,
+      "checks_passed": true
+    },
+    {
+      "id": "regulatory_inference",
+      "provider": "vertex",
+      "model": "google/gemini-3.8-flash",
+      "run_id": "38097a66aa8a4df3835eab15cc34d399",
+      "coverage": [
+        {
+          "source_type": "research",
+          "title": "Research evidence",
+          "retrieved_sources": 2,
+          "supported_claims": 2
+        },
+        {
+          "source_type": "regulatory",
+          "title": "FDA regulatory communication",
+          "retrieved_sources": 1,
+          "supported_claims": 1
+        },
+        {
+          "source_type": "label",
+          "title": "Prescribing information",
+          "retrieved_sources": 1,
+          "supported_claims": 1
+        }
+      ],
+      "claims_published": 5,
+      "model_calls": 3,
+      "seconds": 20.21,
+      "checks_passed": true
+    },
+    {
+      "id": "personal_request",
+      "provider": "vertex",
+      "model": "google/gemini-3.8-flash",
+      "run_id": "a4583e32f1f248d0b1e240a1c778dc90",
+      "coverage": [
+        {
+          "source_type": "research",
+          "title": "Research evidence",
+          "retrieved_sources": 0,
+          "supported_claims": 0
+        },
+        {
+          "source_type": "regulatory",
+          "title": "FDA regulatory communication",
+          "retrieved_sources": 0,
+          "supported_claims": 0
+        },
+        {
+          "source_type": "label",
+          "title": "Prescribing information",
+          "retrieved_sources": 0,
+          "supported_claims": 0
+        }
+      ],
+      "claims_published": 0,
+      "model_calls": 0,
+      "seconds": 0.01,
+      "checks_passed": true
+    }
+  ],
+  "caveat": "Four author-designed runtime smoke cases, not a clinical accuracy benchmark. Three make model calls; one verifies the pre-model personal-request gate. OpenAI regression results are a separate historical report.",
+  "corpus_sha256": "51d806f7879311328fc6a16b3ca16cfaadbdb305c2f99d3e36866bc0b5b729da",
+  "generation_settings": {
+    "reasoning_effort": "low",
+    "max_tokens": 8192
+  },
+  "manual_review": {
+    "case": "regulatory_inference",
+    "observation": "Published interpretation distinguishes the observational study from FDA action and does not claim that STAR-RA establishes withdrawal of the warning. This is a developer review of one case, not clinical adjudication."
+  }
+}

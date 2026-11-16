@@ -1,0 +1,377 @@
+{
+  "run_id": "9d3ebb6bb23e44abb9c57c2a65735efd",
+  "question": "Prepare a brief for our drug-safety team on tofacitinib cardiovascular risk. Compare ORAL Surveillance and STAR-RA, explain what the FDA safety communication and indexed prescribing information say, and identify uncertainties for human review.",
+  "as_of": "2026-11-15",
+  "pipeline_version": "safety-brief-v2",
+  "mode": "safety_brief",
+  "retrieval_mode": "preloaded_index",
+  "coverage": [
+    {
+      "source_type": "research",
+      "title": "Research evidence",
+      "retrieved_sources": 2,
+      "supported_claims": 3
+    },
+    {
+      "source_type": "regulatory",
+      "title": "FDA regulatory communication",
+      "retrieved_sources": 1,
+      "supported_claims": 2
+    },
+    {
+      "source_type": "label",
+      "title": "Prescribing information",
+      "retrieved_sources": 1,
+      "supported_claims": 2
+    }
+  ],
+  "brief_complete": true,
+  "created_at": "2026-11-16T04:25:48.607233+00:00",
+  "status": "research_draft",
+  "provider": "openai",
+  "model": "gpt-4.1-mini",
+  "claims": [
+    {
+      "section": "research",
+      "text": "ORAL Surveillance trial showed higher risks of MACE and cancers with tofacitinib compared to TNF inhibitors in a cardiovascular risk-enriched RA population.",
+      "citations": [
+        {
+          "passage_id": "pmid-35081280-3df021ee3e",
+          "source_id": "pmid-35081280",
+          "section": "Abstract / CONCLUSIONS",
+          "quote": "risks of MACE and cancers were higher with tofacitinib"
+        }
+      ],
+      "claim_index": 0,
+      "verdict": "supported",
+      "mechanical_checks_passed": true,
+      "reason": "The ORAL Surveillance trial, conducted in a cardiovascular risk-enriched RA population, showed higher risks of MACE and cancers with tofacitinib compared to TNF inhibitors, and noninferiority criteria were not met (pmid-35081280-3df021ee3e).",
+      "included_in_brief": true
+    },
+    {
+      "section": "research",
+      "text": "STAR-RA study found no increased cardiovascular risk with tofacitinib in real-world RA patients but a non-significant increased risk in those with cardiovascular risk factors.",
+      "citations": [
+        {
+          "passage_id": "pmid-35027405-1e63b57282",
+          "source_id": "pmid-35027405",
+          "section": "Abstract / CONCLUSIONS",
+          "quote": "did not find evidence for an increased risk of cardiovascular outcomes with tofacitinib"
+        },
+        {
+          "passage_id": "pmid-35027405-3984242e01",
+          "source_id": "pmid-35027405",
+          "section": "Abstract / OBJECTIVES",
+          "quote": "examined this safety concern in the real-world"
+        }
+      ],
+      "claim_index": 1,
+      "verdict": "supported",
+      "mechanical_checks_passed": true,
+      "reason": "The STAR-RA study, analyzing real-world RA patients, did not find evidence for an increased risk of cardiovascular outcomes with tofacitinib overall, but noted a non-significant increased risk in patients with cardiovascular risk factors (pmid-35027405-1e63b57282, pmid-35027405-3984242e01).",
+      "included_in_brief": true
+    },
+    {
+      "section": "research",
+      "text": "STAR-RA included two cohorts: a real-world evidence cohort and an RCT-duplicate cohort mimicking ORAL Surveillance criteria to calibrate findings.",
+      "citations": [
+        {
+          "passage_id": "pmid-35027405-e31c1e0e2f",
+          "source_id": "pmid-35027405",
+          "section": "Abstract / METHODS",
+          "quote": ""
+        }
+      ],
+      "claim_index": 2,
+      "verdict": "supported",
+      "mechanical_checks_passed": true,
+      "reason": "STAR-RA included two cohorts: a real-world evidence cohort and an RCT-duplicate cohort mimicking ORAL Surveillance criteria to calibrate findings (pmid-35027405-e31c1e0e2f).",
+      "included_in_brief": true
+    },
+    {
+      "section": "regulatory",
+      "text": "FDA requires new warnings about increased risk of major adverse cardiovascular events, malignancy, thrombosis, and mortality with tofacitinib and other JAK inhibitors.",
+      "citations": [
+        {
+          "passage_id": "fda-2021-bcae7ef825",
+          "source_id": "fda-2021",
+          "section": "Additional Information for Health Care Professionals",
+          "quote": "FDA is requiring new and updated warnings about an increased risk of major adverse cardiovascular events"
+        }
+      ],
+      "claim_index": 3,
+      "verdict": "supported",
+      "mechanical_checks_passed": true,
+      "reason": "The FDA safety communication requires new and updated warnings about increased risk of major adverse cardiovascular events, malignancy, thrombosis, and mortality with tofacitinib and other JAK inhibitors (fda-2021-bcae7ef825).",
+      "included_in_brief": true
+    },
+    {
+      "section": "regulatory",
+      "text": "FDA's ORAL Surveillance trial required patients \u226550 years with \u22651 cardiovascular risk factor, comparing tofacitinib 5 mg and 10 mg twice daily to TNF blockers, with MACE and malignancy as co-primary endpoints.",
+      "citations": [
+        {
+          "passage_id": "fda-2021-beddb74c61",
+          "source_id": "fda-2021",
+          "section": "Data Summary",
+          "quote": "multicenter, randomized, open-label trial"
+        }
+      ],
+      "claim_index": 4,
+      "verdict": "supported",
+      "mechanical_checks_passed": true,
+      "reason": "FDA's ORAL Surveillance trial required patients \u226550 years with \u22651 cardiovascular risk factor, comparing tofacitinib 5 mg and 10 mg twice daily to TNF blockers, with MACE and malignancy as co-primary endpoints (fda-2021-beddb74c61).",
+      "included_in_brief": true
+    },
+    {
+      "section": "label",
+      "text": "Xeljanz prescribing information states RA Safety Study 1 showed higher rates of MACE and mortality with tofacitinib 5 mg and 10 mg twice daily versus TNF blockers in RA patients \u226550 years with cardiovascular risk factors.",
+      "citations": [
+        {
+          "passage_id": "label-xeljanz-3736bc93f2",
+          "source_id": "label-xeljanz",
+          "section": "5.4 Major Adverse Cardiovascular Events",
+          "quote": "patients with RA who were 50 years of age and older with at least one cardiovascular risk factor and treated"
+        }
+      ],
+      "claim_index": 5,
+      "verdict": "supported",
+      "mechanical_checks_passed": true,
+      "reason": "Xeljanz prescribing information states RA Safety Study 1 showed higher rates of MACE and mortality with tofacitinib 5 mg and 10 mg twice daily versus TNF blockers in RA patients \u226550 years with cardiovascular risk factors (label-xeljanz-3736bc93f2, label-xeljanz-2b00687592).",
+      "included_in_brief": true
+    },
+    {
+      "section": "label",
+      "text": "The label notes the non-inferiority criterion was not met in RA Safety Study 1; increased risks of death, MACE, malignancies, serious infections, and thromboembolic events were observed with tofacitinib.",
+      "citations": [
+        {
+          "passage_id": "label-xeljanz-4498443279",
+          "source_id": "label-xeljanz",
+          "section": "14.6 Safety Study in Adults with Rheumatoid Arthritis (XELJANZ Versus TNF-blocker)",
+          "quote": ""
+        }
+      ],
+      "claim_index": 6,
+      "verdict": "supported",
+      "mechanical_checks_passed": true,
+      "reason": "The label notes the non-inferiority criterion was not met in RA Safety Study 1; increased risks of death, MACE, malignancies, serious infections, and thromboembolic events were observed with tofacitinib (label-xeljanz-4498443279).",
+      "included_in_brief": true
+    },
+    {
+      "section": "synthesis",
+      "text": "ORAL Surveillance showed increased cardiovascular risk with tofacitinib in high-risk RA patients, while STAR-RA real-world data did not find significant risk overall; FDA warnings and label reflect ORAL Surveillance findings, highlighting uncertainties in risk magnitude and patient subgroups.",
+      "citations": [
+        {
+          "passage_id": "pmid-35081280-3df021ee3e",
+          "source_id": "pmid-35081280",
+          "section": "Abstract / CONCLUSIONS",
+          "quote": "risks of MACE and cancers were higher with tofacitinib"
+        },
+        {
+          "passage_id": "pmid-35027405-1e63b57282",
+          "source_id": "pmid-35027405",
+          "section": "Abstract / CONCLUSIONS",
+          "quote": ""
+        },
+        {
+          "passage_id": "fda-2021-bcae7ef825",
+          "source_id": "fda-2021",
+          "section": "Additional Information for Health Care Professionals",
+          "quote": ""
+        }
+      ],
+      "claim_index": 7,
+      "verdict": "supported",
+      "mechanical_checks_passed": true,
+      "reason": "Synthesis: ORAL Surveillance showed increased cardiovascular risk with tofacitinib in high-risk RA patients, while STAR-RA real-world data did not find significant risk overall; FDA warnings and label reflect ORAL Surveillance findings, highlighting uncertainties in risk magnitude and patient subgroups (pmid-35081280-3df021ee3e, pmid-35027405-1e63b57282, fda-2021-bcae7ef825).",
+      "included_in_brief": true
+    }
+  ],
+  "answer": "ORAL Surveillance trial showed higher risks of MACE and cancers with tofacitinib compared to TNF inhibitors in a cardiovascular risk-enriched RA population. STAR-RA study found no increased cardiovascular risk with tofacitinib in real-world RA patients but a non-significant increased risk in those with cardiovascular risk factors. STAR-RA included two cohorts: a real-world evidence cohort and an RCT-duplicate cohort mimicking ORAL Surveillance criteria to calibrate findings. FDA requires new warnings about increased risk of major adverse cardiovascular events, malignancy, thrombosis, and mortality with tofacitinib and other JAK inhibitors. FDA's ORAL Surveillance trial required patients \u226550 years with \u22651 cardiovascular risk factor, comparing tofacitinib 5 mg and 10 mg twice daily to TNF blockers, with MACE and malignancy as co-primary endpoints. Xeljanz prescribing information states RA Safety Study 1 showed higher rates of MACE and mortality with tofacitinib 5 mg and 10 mg twice daily versus TNF blockers in RA patients \u226550 years with cardiovascular risk factors. The label notes the non-inferiority criterion was not met in RA Safety Study 1; increased risks of death, MACE, malignancies, serious infections, and thromboembolic events were observed with tofacitinib. ORAL Surveillance showed increased cardiovascular risk with tofacitinib in high-risk RA patients, while STAR-RA real-world data did not find significant risk overall; FDA warnings and label reflect ORAL Surveillance findings, highlighting uncertainties in risk magnitude and patient subgroups.",
+  "limitations": [
+    "Do the full texts provide detailed subgroup analyses by cardiovascular risk factors?",
+    "Are there differences in patient characteristics or follow-up durations between ORAL Surveillance and STAR-RA that explain divergent findings?",
+    "Is there data on cardiovascular risk with tofacitinib in populations younger than 50 years or without cardiovascular risk factors?",
+    "What are the implications of the non-significant increased risk in STAR-RA for clinical decision-making?"
+  ],
+  "sources": [
+    {
+      "id": "fda-2021",
+      "title": "FDA safety communication: JAK inhibitors",
+      "source_type": "regulatory",
+      "published": "2021-09-01",
+      "url": "https://www.fda.gov/drugs/drug-safety-and-availability/fda-requires-warnings-about-increased-risk-serious-heart-related-events-cancer-blood-clots-and-death",
+      "retrieved_at": "2026-11-16T01:32:28.619847+00:00",
+      "sha256": "faa3bd429ca0847905a6a3d982b72c427d1d8e6705aad72910e2f3ec511c847d",
+      "scope": "Public regulatory communication; source date filter is not a reconstructed historical website."
+    },
+    {
+      "id": "label-xeljanz",
+      "title": "Xeljanz / Xeljanz XR prescribing information",
+      "source_type": "label",
+      "published": "2026-11-10",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=cf74ba2f-afc5-4baa-8594-979c889a5831",
+      "retrieved_at": "2026-11-16T01:32:28.619847+00:00",
+      "sha256": "2de03ef78a7efa43828a7201b282b0cf605820d8bc02cef855ab0b62197ced2c",
+      "version": "56",
+      "set_id": "cf74ba2f-afc5-4baa-8594-979c889a5831",
+      "scope": "Selected label sections; DailyMed listing alone does not establish approval."
+    },
+    {
+      "id": "pmid-35027405",
+      "title": "Tofacitinib and risk of cardiovascular outcomes: results from the Safety of TofAcitinib in Routine care patients with Rheumatoid Arthritis (STAR-RA) study.",
+      "source_type": "research",
+      "published": "2022-01-13",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35027405/",
+      "retrieved_at": "2026-11-16T01:32:28.619847+00:00",
+      "sha256": "37313c2e6d3bb88279eeba5de9f96bccd351cf882ebd6c26d22a5ca63c8a365c",
+      "pmid": "35027405",
+      "doi": "10.1136/annrheumdis-2021-221915",
+      "scope": "Abstract only. No claim of full-text appraisal."
+    },
+    {
+      "id": "pmid-35081280",
+      "title": "Cardiovascular and Cancer Risk with Tofacitinib in Rheumatoid Arthritis.",
+      "source_type": "research",
+      "published": "2022-01-27",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35081280/",
+      "retrieved_at": "2026-11-16T01:32:28.619847+00:00",
+      "sha256": "62c004d8f05cbcdc27cc21f1a3e6a62cebe4c36db47372d62c9acf4df983fad5",
+      "pmid": "35081280",
+      "doi": "10.1056/NEJMoa2109927",
+      "scope": "Abstract only. No claim of full-text appraisal."
+    }
+  ],
+  "trace": [
+    {
+      "stage": "plan",
+      "tool": "model_plan",
+      "output": {
+        "in_scope": true,
+        "reason": "The question requests a safety brief on tofacitinib cardiovascular risk, comparing ORAL Surveillance and STAR-RA studies, summarizing FDA safety communication and prescribing information, and identifying uncertainties. The available sources include FDA's September 2021 JAK safety communication, an indexed Xeljanz label version, and the ORAL Surveillance and STAR-RA abstracts, which are directly relevant to the question.",
+        "searches": [
+          {
+            "query": "tofacitinib cardiovascular risk ORAL Surveillance STAR-RA study comparison",
+            "source_type": "research"
+          },
+          {
+            "query": "FDA safety communication tofacitinib cardiovascular risk",
+            "source_type": "regulatory"
+          },
+          {
+            "query": "Xeljanz prescribing information cardiovascular risk boxed warning",
+            "source_type": "label"
+          }
+        ]
+      }
+    },
+    {
+      "stage": "plan",
+      "policy": "Safety briefs check all three source categories. Missing typed queries use the user question.",
+      "effective_searches": [
+        {
+          "query": "tofacitinib cardiovascular risk ORAL Surveillance STAR-RA study comparison",
+          "source_type": "research"
+        },
+        {
+          "query": "FDA safety communication tofacitinib cardiovascular risk",
+          "source_type": "regulatory"
+        },
+        {
+          "query": "Xeljanz prescribing information cardiovascular risk boxed warning",
+          "source_type": "label"
+        }
+      ]
+    },
+    {
+      "stage": "retrieve",
+      "calls": [
+        {
+          "tool": "search_evidence",
+          "arguments": {
+            "query": "tofacitinib cardiovascular risk ORAL Surveillance STAR-RA study comparison",
+            "source_type": "research",
+            "as_of": "2026-11-15"
+          },
+          "passage_ids": [
+            "pmid-35081280-3df021ee3e",
+            "pmid-35027405-3984242e01",
+            "pmid-35027405-e31c1e0e2f",
+            "pmid-35081280-89a0082286",
+            "pmid-35027405-1e63b57282",
+            "pmid-35081280-b8cafa5357"
+          ]
+        },
+        {
+          "tool": "search_evidence",
+          "arguments": {
+            "query": "FDA safety communication tofacitinib cardiovascular risk",
+            "source_type": "regulatory",
+            "as_of": "2026-11-15"
+          },
+          "passage_ids": [
+            "fda-2021-bcae7ef825",
+            "fda-2021-beddb74c61",
+            "fda-2021-9fb5bbc3a7",
+            "fda-2021-449f74b672",
+            "fda-2021-ccd9646fb3",
+            "fda-2021-0cfe68adc5"
+          ]
+        },
+        {
+          "tool": "search_evidence",
+          "arguments": {
+            "query": "Xeljanz prescribing information cardiovascular risk boxed warning",
+            "source_type": "label",
+            "as_of": "2026-11-15"
+          },
+          "passage_ids": [
+            "label-xeljanz-3736bc93f2",
+            "label-xeljanz-2b00687592",
+            "label-xeljanz-2ab3cc3190",
+            "label-xeljanz-641067f66b",
+            "label-xeljanz-4498443279",
+            "label-xeljanz-0a7b696f24"
+          ]
+        }
+      ],
+      "retrieval_mode": "preloaded_index"
+    },
+    {
+      "stage": "draft",
+      "claim_count": 8
+    },
+    {
+      "stage": "verify",
+      "completed": true
+    },
+    {
+      "stage": "finalize",
+      "accepted": 8,
+      "withheld": 0
+    }
+  ],
+  "usage": [
+    {
+      "stage": "Plan",
+      "input_tokens": 692,
+      "output_tokens": 149,
+      "seconds": 1.926
+    },
+    {
+      "stage": "Draft",
+      "input_tokens": 9825,
+      "output_tokens": 938,
+      "seconds": 7.109
+    },
+    {
+      "stage": "Verification",
+      "input_tokens": 10407,
+      "output_tokens": 617,
+      "seconds": 5.082
+    }
+  ],
+  "review_status": "Human review required",
+  "data_notice": "Indexed public source snapshots; research abstracts are not full-text reviews. Date filtering does not reconstruct historical website edits.",
+  "verification_notice": "Model-assessed support plus deterministic citation/date checks. Not independent clinical validation.",
+  "elapsed_seconds": 15.25
+}

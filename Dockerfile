@@ -5,7 +5,7 @@ ENV PYTHONUNBUFFERED=1 UV_COMPILE_BYTECODE=1 UV_LINK_MODE=copy ANONYMIZED_TELEME
 COPY pyproject.toml uv.lock ./
 RUN uv sync --frozen --no-dev
 COPY app ./app
-COPY reports/saved-example.json reports/evaluation.json ./reports/
+COPY reports/saved-example.json reports/evaluation.json reports/vertex-smoke.json ./reports/
 RUN useradd --create-home --uid 10001 appuser && chown -R appuser:appuser /app/app/data
 USER appuser
 ENV PATH="/app/.venv/bin:$PATH" PORT=8080

@@ -1,6 +1,8 @@
-# Safety-brief evaluation (v2)
+# Safety-brief validation records (v2)
 
-Version: `safety-brief-v2`. Real OpenAI calls with `gpt-4.1-mini` and `text-embedding-3-small`. The complete case results and execution fingerprint are in [reports/evaluation.json](../reports/evaluation.json).
+Historical regression version: `safety-brief-v2`. Real OpenAI calls with `gpt-4.1-mini` and `text-embedding-3-small`. The complete case results and execution fingerprint are in [reports/evaluation.json](../reports/evaluation.json).
+
+The public service now uses Vertex AI for generation and embeddings. The OpenAI scores below are retained as historical results, not an evaluation of the new model. Current runtime checks are recorded separately in [vertex-smoke.json](../reports/vertex-smoke.json).
 
 ## What changed
 
@@ -33,8 +35,16 @@ Mechanical checks are a gate invariant, not a clinical accuracy score. The paire
 
 ## Reproduction
 
-- `uv run pytest -q`: 29 deterministic tests, including source-category separation, missing/ambiguous verification, quote/date checks, personal-request routing and a stubbed Bedrock request contract.
+- `uv run pytest -q`: 31 deterministic tests, including source-category separation, missing/ambiguous verification, quote/date checks, personal-request routing and a stubbed Bedrock request contract.
 - `uv run python scripts/evaluate.py`: executes paid model calls. It resumes only from raw states whose fingerprint matches the case file, pipeline source, corpus and model configuration. Raw states are excluded from Git.
 - `uv run python scripts/browser_smoke.py <URL>`: saved and real live runs, all three source sections, tool trace, preload labeling, mobile overflow, error recovery, and no raw corpus endpoint.
 
-The saved example comes from `brief-01`, an actual recorded model run. It is explicitly labeled. Bedrock has not been live-verified. The data are still preloaded FDA/DailyMed/PubMed snapshots; this evaluation does not test live internet discovery.
+The current saved example comes from the Vertex `default_brief` smoke case, an actual recorded model run. The earlier OpenAI example is retained in the archived report history. It is explicitly labeled. Bedrock has not been live-verified. The data are still preloaded FDA/DailyMed/PubMed snapshots; this evaluation does not test live internet discovery.
+
+## Vertex runtime verification
+
+`scripts/vertex_smoke.py` makes three real model-path runs and checks a fourth personal-request case without invoking a model: a default safety brief, a historical cutoff, a question about whether a later study establishes an FDA warning withdrawal, and an individual risk/dose request. The checks cover source-category coverage, date filtering and the pre-model gate. Regulatory interpretation also requires manual source review. This is a small integration smoke suite, not the full 36-case regression benchmark or a clinical accuracy measure.
+
+Vertex generation uses `google/gemini-3.8-flash` through Google’s OpenAI-compatible endpoint. Embeddings use `text-embedding-005`; all 63 passages were re-indexed in a separate Vertex collection. The embedding HTTP contract is also tested for batching, ordering and document/query task types.
+
+The first Vertex trial exhausted the output limit during verification because the default reasoning consumed the budget; all seven draft claims were withheld. The failure summary is retained in `reports/archive/vertex-initial-verification-failure.json`. Setting explicit low reasoning effort resolved the truncation without relaxing verification checks; the completed suite uses that setting.

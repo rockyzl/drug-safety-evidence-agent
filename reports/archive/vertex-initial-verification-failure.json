@@ -1,0 +1,8 @@
+{
+  "provider": "vertex",
+  "model": "google/gemini-3.8-flash",
+  "issue": "LengthFinishReasonError: default reasoning exhausted the output limit during verification. All draft claims withheld.",
+  "resolution": "Set explicit low reasoning effort in the Google-compatible API and re-run the smoke suite. No verification checks were relaxed.",
+  "claims_published": 0,
+  "elapsed_seconds": 84.16
+}

@@ -1,7 +1,7 @@
 {
   "pipeline_version": "safety-brief-v2",
   "unit_tests": {
-    "passed": 29,
+    "passed": 31,
     "command": "uv run pytest -q"
   },
   "evaluation": "reports/evaluation.json",
@@ -18,7 +18,7 @@
     "no JavaScript errors"
   ],
   "layout_followup": "FDA and label dates visible; accepted-check explanations collapsed; 390px coverage layout inspected.",
-  "cloud_verification": "pending v2 deployment",
+  "cloud_verification": "pending Vertex deployment",
   "prior_cloud_verification": {
     "url": "https://drug-safety-evidence-agent-1038659864130.us-central1.run.app",
     "revision": "drug-safety-evidence-agent-00001-g2z",
@@ -40,7 +40,12 @@
   },
   "provider_issue": {
     "code": "credit_balance_exhausted",
-    "effect": "OpenAI live calls currently fail; saved example remains available.",
+    "effect": "Historical OpenAI provider exhausted its credits. Current runtime is being moved to Vertex generation and embeddings.",
     "detected_during": "v2 final evaluation"
-  }
+  },
+  "current_provider": "vertex",
+  "current_model": "google/gemini-3.8-flash",
+  "embedding_provider": "vertex",
+  "embedding_model": "text-embedding-005",
+  "runtime_smoke": "reports/vertex-smoke.json"
 }

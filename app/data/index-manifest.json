@@ -1,5 +1,6 @@
 {
-  "embedding_model": "text-embedding-3-small",
+  "embedding_provider": "vertex",
+  "embedding_model": "text-embedding-005",
   "passage_count": 63,
   "corpus_sha256": "51d806f7879311328fc6a16b3ca16cfaadbdb305c2f99d3e36866bc0b5b729da"
 }
