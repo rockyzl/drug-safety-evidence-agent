@@ -1,0 +1,257 @@
+{
+  "run_id": "fc46e5b0f97f43479bf415dd65a81fd9",
+  "question": "Prepare a tofacitinib safety brief from the indexed FDA, research and label sources available by the cutoff.",
+  "as_of": "2021-12-31",
+  "pipeline_version": "safety-brief-v2",
+  "mode": "safety_brief",
+  "retrieval_mode": "preloaded_index",
+  "coverage": [
+    {
+      "source_type": "research",
+      "title": "Research evidence",
+      "retrieved_sources": 0,
+      "supported_claims": 0
+    },
+    {
+      "source_type": "regulatory",
+      "title": "FDA regulatory communication",
+      "retrieved_sources": 1,
+      "supported_claims": 5
+    },
+    {
+      "source_type": "label",
+      "title": "Prescribing information",
+      "retrieved_sources": 0,
+      "supported_claims": 0
+    }
+  ],
+  "brief_complete": false,
+  "created_at": "2026-11-16T04:40:58.401446+00:00",
+  "status": "research_draft",
+  "provider": "vertex",
+  "model": "google/gemini-3.8-flash",
+  "claims": [
+    {
+      "section": "regulatory",
+      "text": "In a safety communication dated September 1, 2021, the FDA reported that a review of a completed randomized safety clinical trial concluded there is an increased risk of serious heart-related events, cancer, blood clots, and death with tofacitinib (Xeljanz and Xeljanz XR).",
+      "citations": [
+        {
+          "passage_id": "fda-2021-9fb5bbc3a7",
+          "source_id": "fda-2021",
+          "section": "What safety concern is FDA announcing?",
+          "quote": "we have concluded there is an increased risk of serious heart-related events"
+        }
+      ],
+      "claim_index": 0,
+      "verdict": "supported",
+      "mechanical_checks_passed": true,
+      "reason": "Passage fda-2021-9fb5bbc3a7 directly confirms that based on a completed randomized safety clinical trial review, the FDA concluded there is an increased risk of serious heart-related events, cancer, blood clots, and death with Xeljanz and Xeljanz XR (tofacitinib) on September 1, 2021.",
+      "included_in_brief": true
+    },
+    {
+      "section": "regulatory",
+      "text": "The FDA stated on September 1, 2021, that final trial data showed an increased risk of blood clots and death with both doses of tofacitinib compared to TNF blockers, whereas earlier interim findings had identified that risk only at the higher dose.",
+      "citations": [
+        {
+          "passage_id": "fda-2021-08eec55efc",
+          "source_id": "fda-2021",
+          "section": "What did FDA find?",
+          "quote": "higher rate of blood clots and death was"
+        }
+      ],
+      "claim_index": 1,
+      "verdict": "supported",
+      "mechanical_checks_passed": true,
+      "reason": "Passage fda-2021-08eec55efc directly confirms that final trial results showed a higher rate of blood clots and death with both doses of Xeljanz compared to TNF blockers, whereas earlier interim results had shown the risk only with the higher dose.",
+      "included_in_brief": true
+    },
+    {
+      "section": "regulatory",
+      "text": "According to the FDA's September 1, 2021 communication, the required trial evaluated rheumatoid arthritis patients taking methotrexate aged 50 and older with at least one cardiovascular risk factor, comparing tofacitinib 5 mg twice daily and 10 mg twice daily against a TNF blocker.",
+      "citations": [
+        {
+          "passage_id": "fda-2021-beddb74c61",
+          "source_id": "fda-2021",
+          "section": "Data Summary",
+          "quote": ""
+        }
+      ],
+      "claim_index": 2,
+      "verdict": "supported",
+      "mechanical_checks_passed": true,
+      "reason": "Passage fda-2021-beddb74c61 directly verifies that the required trial evaluated RA patients taking methotrexate aged 50 and older with at least one cardiovascular risk factor, comparing tofacitinib 5 mg twice daily and 10 mg twice daily against a TNF blocker.",
+      "included_in_brief": true
+    },
+    {
+      "section": "regulatory",
+      "text": "On September 1, 2021, the FDA indicated that final trial results demonstrated a higher rate of lymphomas with tofacitinib versus TNF blockers, as well as a higher rate of lung cancers in current or past smokers.",
+      "citations": [
+        {
+          "passage_id": "fda-2021-08eec55efc",
+          "source_id": "fda-2021",
+          "section": "What did FDA find?",
+          "quote": ""
+        }
+      ],
+      "claim_index": 3,
+      "verdict": "supported",
+      "mechanical_checks_passed": true,
+      "reason": "Passage fda-2021-08eec55efc states that a higher rate of lymphomas was observed with Xeljanz compared to TNF blockers, and a higher rate of lung cancers in current or past smokers treated with Xeljanz compared to TNF blockers.",
+      "included_in_brief": true
+    },
+    {
+      "section": "regulatory",
+      "text": "As of September 1, 2021, the FDA announced it is requiring new and updated warnings for major adverse cardiovascular events, malignancy, thrombosis, and mortality across Janus kinase inhibitors used for inflammatory conditions, including tofacitinib, baricitinib, and upadacitinib.",
+      "citations": [
+        {
+          "passage_id": "fda-2021-bcae7ef825",
+          "source_id": "fda-2021",
+          "section": "Additional Information for Health Care Professionals",
+          "quote": ""
+        }
+      ],
+      "claim_index": 4,
+      "verdict": "supported",
+      "mechanical_checks_passed": true,
+      "reason": "Passage fda-2021-bcae7ef825 confirms FDA is requiring new and updated warnings for major adverse cardiovascular events, malignancy, thrombosis, and mortality across JAK inhibitors including Xeljanz/Xeljanz XR (tofacitinib), Olumiant (baricitinib), and Rinvoq (upadacitinib), and passage fda-2021-449f74b672 adds context regarding inflammatory conditions.",
+      "included_in_brief": true
+    }
+  ],
+  "answer": "In a safety communication dated September 1, 2021, the FDA reported that a review of a completed randomized safety clinical trial concluded there is an increased risk of serious heart-related events, cancer, blood clots, and death with tofacitinib (Xeljanz and Xeljanz XR). The FDA stated on September 1, 2021, that final trial data showed an increased risk of blood clots and death with both doses of tofacitinib compared to TNF blockers, whereas earlier interim findings had identified that risk only at the higher dose. According to the FDA's September 1, 2021 communication, the required trial evaluated rheumatoid arthritis patients taking methotrexate aged 50 and older with at least one cardiovascular risk factor, comparing tofacitinib 5 mg twice daily and 10 mg twice daily against a TNF blocker. On September 1, 2021, the FDA indicated that final trial results demonstrated a higher rate of lymphomas with tofacitinib versus TNF blockers, as well as a higher rate of lung cancers in current or past smokers. As of September 1, 2021, the FDA announced it is requiring new and updated warnings for major adverse cardiovascular events, malignancy, thrombosis, and mortality across Janus kinase inhibitors used for inflammatory conditions, including tofacitinib, baricitinib, and upadacitinib.",
+  "limitations": [
+    "Do the indexed sources contain independent research publications or trial manuscripts beyond the regulatory communication?",
+    "Do the available materials include the approved prescribing information label for tofacitinib as of the cutoff date?"
+  ],
+  "sources": [
+    {
+      "id": "fda-2021",
+      "title": "FDA safety communication: JAK inhibitors",
+      "source_type": "regulatory",
+      "published": "2021-09-01",
+      "url": "https://www.fda.gov/drugs/drug-safety-and-availability/fda-requires-warnings-about-increased-risk-serious-heart-related-events-cancer-blood-clots-and-death",
+      "retrieved_at": "2026-11-16T01:32:28.619847+00:00",
+      "sha256": "faa3bd429ca0847905a6a3d982b72c427d1d8e6705aad72910e2f3ec511c847d",
+      "scope": "Public regulatory communication; source date filter is not a reconstructed historical website."
+    }
+  ],
+  "trace": [
+    {
+      "stage": "plan",
+      "tool": "model_plan",
+      "output": {
+        "in_scope": true,
+        "reason": "The request asks for a safety brief across indexed FDA regulatory, research, and label sources for tofacitinib, adhering to the safety_brief query requirements.",
+        "searches": [
+          {
+            "query": "tofacitinib ORAL Surveillance STAR-RA trial design patient population cardiovascular events malignancy mortality",
+            "source_type": "research"
+          },
+          {
+            "query": "FDA Drug Safety Communication tofacitinib safety review cardiovascular risk malignancy thrombosis warnings and actions",
+            "source_type": "regulatory"
+          },
+          {
+            "query": "tofacitinib Xeljanz boxed warning indications usage risks mortality cardiovascular malignancy thrombosis",
+            "source_type": "label"
+          }
+        ]
+      }
+    },
+    {
+      "stage": "plan",
+      "policy": "Safety briefs check all three source categories. Missing typed queries use the user question.",
+      "effective_searches": [
+        {
+          "query": "tofacitinib ORAL Surveillance STAR-RA trial design patient population cardiovascular events malignancy mortality",
+          "source_type": "research"
+        },
+        {
+          "query": "FDA Drug Safety Communication tofacitinib safety review cardiovascular risk malignancy thrombosis warnings and actions",
+          "source_type": "regulatory"
+        },
+        {
+          "query": "tofacitinib Xeljanz boxed warning indications usage risks mortality cardiovascular malignancy thrombosis",
+          "source_type": "label"
+        }
+      ]
+    },
+    {
+      "stage": "retrieve",
+      "calls": [
+        {
+          "tool": "search_evidence",
+          "arguments": {
+            "query": "tofacitinib ORAL Surveillance STAR-RA trial design patient population cardiovascular events malignancy mortality",
+            "source_type": "research",
+            "as_of": "2021-12-31"
+          },
+          "passage_ids": []
+        },
+        {
+          "tool": "search_evidence",
+          "arguments": {
+            "query": "FDA Drug Safety Communication tofacitinib safety review cardiovascular risk malignancy thrombosis warnings and actions",
+            "source_type": "regulatory",
+            "as_of": "2021-12-31"
+          },
+          "passage_ids": [
+            "fda-2021-9fb5bbc3a7",
+            "fda-2021-bcae7ef825",
+            "fda-2021-beddb74c61",
+            "fda-2021-449f74b672",
+            "fda-2021-08eec55efc",
+            "fda-2021-b26f00bb77"
+          ]
+        },
+        {
+          "tool": "search_evidence",
+          "arguments": {
+            "query": "tofacitinib Xeljanz boxed warning indications usage risks mortality cardiovascular malignancy thrombosis",
+            "source_type": "label",
+            "as_of": "2021-12-31"
+          },
+          "passage_ids": []
+        }
+      ],
+      "retrieval_mode": "preloaded_index"
+    },
+    {
+      "stage": "draft",
+      "claim_count": 5
+    },
+    {
+      "stage": "verify",
+      "completed": true
+    },
+    {
+      "stage": "finalize",
+      "accepted": 5,
+      "withheld": 0
+    }
+  ],
+  "usage": [
+    {
+      "stage": "Plan",
+      "input_tokens": 788,
+      "output_tokens": 138,
+      "reasoning_tokens": 163,
+      "seconds": 4.518
+    },
+    {
+      "stage": "Draft",
+      "input_tokens": 3724,
+      "output_tokens": 608,
+      "seconds": 7.086
+    },
+    {
+      "stage": "Verification",
+      "input_tokens": 3847,
+      "output_tokens": 460,
+      "seconds": 4.891
+    }
+  ],
+  "review_status": "Human review required",
+  "data_notice": "Indexed public source snapshots; research abstracts are not full-text reviews. Date filtering does not reconstruct historical website edits.",
+  "verification_notice": "Model-assessed support plus deterministic citation/date checks. Not independent clinical validation.",
+  "elapsed_seconds": 17.07
+}

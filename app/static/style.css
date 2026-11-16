@@ -11,3 +11,6 @@
 @media(max-width:700px){#question{min-height:230px}}
 
 .check-detail{font-size:13px;color:var(--muted);margin:4px 0 10px}.check-detail summary{cursor:pointer}.claim .check-detail p{font-size:14px;margin:8px 0;color:var(--muted)}
+
+.example-picker{padding:0 0 24px;margin-bottom:24px;border-bottom:1px solid var(--line)}.example-picker h2{font-size:19px;margin-bottom:6px}.example-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.example-choice{border:1px solid #c5d2e6;border-radius:6px;background:white;color:var(--ink);padding:13px 16px;text-align:left;font-size:15px;line-height:1.4;min-height:62px}.example-choice:hover{background:var(--pale)}.example-choice[aria-pressed=true]{border-color:var(--blue);background:var(--pale);color:#1748bb;box-shadow:inset 3px 0 var(--blue)}.example-note{font-size:13px;color:var(--muted);margin:12px 0 0}#result-question{color:var(--ink)}#result-question:empty{display:none}
+@media(max-width:700px){.example-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.example-choice{padding:12px;font-size:14px}}

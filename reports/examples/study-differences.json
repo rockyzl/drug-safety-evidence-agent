@@ -1,0 +1,346 @@
+{
+  "run_id": "25c8a7c9c3784d5db449ca7867740ce7",
+  "question": "Compare the design and patient populations of ORAL Surveillance and STAR-RA. How could those differences affect interpretation of cardiovascular findings, and what can the indexed abstracts not establish?",
+  "as_of": "2026-11-15",
+  "pipeline_version": "safety-brief-v2",
+  "mode": "safety_brief",
+  "retrieval_mode": "preloaded_index",
+  "coverage": [
+    {
+      "source_type": "research",
+      "title": "Research evidence",
+      "retrieved_sources": 2,
+      "supported_claims": 4
+    },
+    {
+      "source_type": "regulatory",
+      "title": "FDA regulatory communication",
+      "retrieved_sources": 1,
+      "supported_claims": 1
+    },
+    {
+      "source_type": "label",
+      "title": "Prescribing information",
+      "retrieved_sources": 1,
+      "supported_claims": 1
+    }
+  ],
+  "brief_complete": true,
+  "created_at": "2026-11-16T04:58:47.872512+00:00",
+  "status": "research_draft",
+  "provider": "vertex",
+  "model": "google/gemini-3.8-flash",
+  "claims": [
+    {
+      "section": "research",
+      "text": "ORAL Surveillance was an open-label, randomized noninferiority postauthorization trial comparing tofacitinib (5 mg or 10 mg twice daily) with a TNF inhibitor in patients aged 50 years or older with active rheumatoid arthritis despite methotrexate and at least one cardiovascular risk factor.",
+      "citations": [
+        {
+          "passage_id": "pmid-35081280-b8cafa5357",
+          "source_id": "pmid-35081280",
+          "section": "Abstract / METHODS",
+          "quote": "randomized, open-label, noninferiority, postauthorization, safety end-point trial"
+        }
+      ],
+      "claim_index": 0,
+      "verdict": "supported",
+      "mechanical_checks_passed": true,
+      "reason": "The passage pmid-35081280-b8cafa5357 explicitly describes ORAL Surveillance as a randomized, open-label, noninferiority, postauthorization safety end-point trial in patients aged 50 or older with active rheumatoid arthritis despite methotrexate and at least one cardiovascular risk factor, comparing tofacitinib (5 mg or 10 mg twice daily) to a TNF inhibitor.",
+      "included_in_brief": true
+    },
+    {
+      "section": "research",
+      "text": "In ORAL Surveillance, the combined tofacitinib doses failed to demonstrate noninferiority compared with a TNF inhibitor for major adverse cardiovascular events (MACE) and cancers.",
+      "citations": [
+        {
+          "passage_id": "pmid-35081280-3df021ee3e",
+          "source_id": "pmid-35081280",
+          "section": "Abstract / CONCLUSIONS",
+          "quote": "did not meet noninferiority criteria"
+        }
+      ],
+      "claim_index": 1,
+      "verdict": "supported",
+      "mechanical_checks_passed": true,
+      "reason": "Passage pmid-35081280-3df021ee3e explicitly confirms that in this trial comparing the combined tofacitinib doses with a TNF inhibitor, risks of MACE and cancers were higher with tofacitinib and did not meet noninferiority criteria.",
+      "included_in_brief": true
+    },
+    {
+      "section": "research",
+      "text": "STAR-RA was an observational comparative study using healthcare claims databases (Optum, MarketScan, Medicare) that created a routine-care real-world evidence cohort and an RCT-duplicate cohort mimicking ORAL Surveillance inclusion and exclusion criteria.",
+      "citations": [
+        {
+          "passage_id": "pmid-35027405-e31c1e0e2f",
+          "source_id": "pmid-35027405",
+          "section": "Abstract / METHODS",
+          "quote": "A 'randomised controlled trial (RCT)-duplicate cohort'"
+        }
+      ],
+      "claim_index": 2,
+      "verdict": "supported",
+      "mechanical_checks_passed": true,
+      "reason": "Passage pmid-35027405-e31c1e0e2f directly details that STAR-RA used Optum, MarketScan, and Medicare claims databases to create two cohorts: an RWE cohort of routine care patients and an RCT-duplicate cohort mimicking ORAL Surveillance inclusion/exclusion criteria.",
+      "included_in_brief": true
+    },
+    {
+      "section": "research",
+      "text": "In STAR-RA routine-care patients, investigators found no evidence of increased cardiovascular risk with tofacitinib versus TNF inhibitors, although an increased risk that was not statistically significant was noted among patients with cardiovascular risk factors.",
+      "citations": [
+        {
+          "passage_id": "pmid-35027405-1e63b57282",
+          "source_id": "pmid-35027405",
+          "section": "Abstract / CONCLUSIONS",
+          "quote": "although statistically non-significant, in patients with"
+        }
+      ],
+      "claim_index": 3,
+      "verdict": "supported",
+      "mechanical_checks_passed": true,
+      "reason": "Passage pmid-35027405-1e63b57282 states that investigators did not find evidence for an increased risk of cardiovascular outcomes with tofacitinib in patients treated in the real-world setting, though an increased risk that was statistically non-significant was seen in patients with cardiovascular risk factors.",
+      "included_in_brief": true
+    },
+    {
+      "section": "regulatory",
+      "text": "In a September 1, 2021 communication, the FDA concluded based on the completed randomized safety trial that tofacitinib carries an increased risk of serious heart-related events, stroke, cancer, blood clots, and death compared with TNF blockers in rheumatoid arthritis.",
+      "citations": [
+        {
+          "passage_id": "fda-2021-9fb5bbc3a7",
+          "source_id": "fda-2021",
+          "section": "What safety concern is FDA announcing?",
+          "quote": "we have concluded there is an increased risk"
+        }
+      ],
+      "claim_index": 4,
+      "verdict": "supported",
+      "mechanical_checks_passed": true,
+      "reason": "Passage fda-2021-9fb5bbc3a7 (dated September 1, 2021) directly supports FDA's conclusion based on the completed randomized safety trial that tofacitinib carries an increased risk of serious heart-related events (such as heart attack or stroke), cancer, blood clots, and death compared with TNF blockers in rheumatoid arthritis.",
+      "included_in_brief": true
+    },
+    {
+      "section": "label",
+      "text": "The November 10, 2026 prescribing information for Xeljanz describes RA Safety Study 1 (NCT02092467) as evaluating patients aged 50 and older with at least one cardiovascular risk factor, noting higher observed incidence rates of MACE and mortality compared to TNF blockers.",
+      "citations": [
+        {
+          "passage_id": "label-xeljanz-3736bc93f2",
+          "source_id": "label-xeljanz",
+          "section": "5.4 Major Adverse Cardiovascular Events",
+          "quote": "had a higher rate of major adverse cardiovascular events"
+        }
+      ],
+      "claim_index": 5,
+      "verdict": "supported",
+      "mechanical_checks_passed": true,
+      "reason": "The cited label passages (label-xeljanz-3736bc93f2, label-xeljanz-2b00687592, and label-xeljanz-4498443279, dated November 10, 2026) fully support the description of RA Safety Study 1 (NCT02092467) in patients 50 and older with at least one cardiovascular risk factor, and the higher observed incidence rates of MACE and mortality compared with TNF blockers.",
+      "included_in_brief": true
+    },
+    {
+      "section": "synthesis",
+      "text": "Differences between ORAL Surveillance and STAR-RA in baseline cardiovascular risk enrichment and study design (randomized trial versus observational database analysis) complicate cross-study interpretation; furthermore, the indexed abstracts cannot establish full numerical effect sizes or determine whether residual confounding explains differences.",
+      "citations": [
+        {
+          "passage_id": "pmid-35081280-3df021ee3e",
+          "source_id": "pmid-35081280",
+          "section": "Abstract / CONCLUSIONS",
+          "quote": ""
+        },
+        {
+          "passage_id": "pmid-35027405-1e63b57282",
+          "source_id": "pmid-35027405",
+          "section": "Abstract / CONCLUSIONS",
+          "quote": ""
+        }
+      ],
+      "claim_index": 6,
+      "verdict": "unsupported",
+      "mechanical_checks_passed": false,
+      "reason": "Cross-source interpretation needs research and regulatory or label evidence.",
+      "included_in_brief": false
+    }
+  ],
+  "answer": "ORAL Surveillance was an open-label, randomized noninferiority postauthorization trial comparing tofacitinib (5 mg or 10 mg twice daily) with a TNF inhibitor in patients aged 50 years or older with active rheumatoid arthritis despite methotrexate and at least one cardiovascular risk factor. In ORAL Surveillance, the combined tofacitinib doses failed to demonstrate noninferiority compared with a TNF inhibitor for major adverse cardiovascular events (MACE) and cancers. STAR-RA was an observational comparative study using healthcare claims databases (Optum, MarketScan, Medicare) that created a routine-care real-world evidence cohort and an RCT-duplicate cohort mimicking ORAL Surveillance inclusion and exclusion criteria. In STAR-RA routine-care patients, investigators found no evidence of increased cardiovascular risk with tofacitinib versus TNF inhibitors, although an increased risk that was not statistically significant was noted among patients with cardiovascular risk factors. In a September 1, 2021 communication, the FDA concluded based on the completed randomized safety trial that tofacitinib carries an increased risk of serious heart-related events, stroke, cancer, blood clots, and death compared with TNF blockers in rheumatoid arthritis. The November 10, 2026 prescribing information for Xeljanz describes RA Safety Study 1 (NCT02092467) as evaluating patients aged 50 and older with at least one cardiovascular risk factor, noting higher observed incidence rates of MACE and mortality compared to TNF blockers.",
+  "limitations": [
+    "Do the full texts of ORAL Surveillance and STAR-RA provide specific hazard ratios and subgroup analyses to evaluate residual confounding?",
+    "Do the complete publications establish whether event definitions and adjudication differed between the database claims algorithm and the clinical trial endpoint committee?"
+  ],
+  "sources": [
+    {
+      "id": "fda-2021",
+      "title": "FDA safety communication: JAK inhibitors",
+      "source_type": "regulatory",
+      "published": "2021-09-01",
+      "url": "https://www.fda.gov/drugs/drug-safety-and-availability/fda-requires-warnings-about-increased-risk-serious-heart-related-events-cancer-blood-clots-and-death",
+      "retrieved_at": "2026-11-16T01:32:28.619847+00:00",
+      "sha256": "faa3bd429ca0847905a6a3d982b72c427d1d8e6705aad72910e2f3ec511c847d",
+      "scope": "Public regulatory communication; source date filter is not a reconstructed historical website."
+    },
+    {
+      "id": "label-xeljanz",
+      "title": "Xeljanz / Xeljanz XR prescribing information",
+      "source_type": "label",
+      "published": "2026-11-10",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=cf74ba2f-afc5-4baa-8594-979c889a5831",
+      "retrieved_at": "2026-11-16T01:32:28.619847+00:00",
+      "sha256": "2de03ef78a7efa43828a7201b282b0cf605820d8bc02cef855ab0b62197ced2c",
+      "version": "56",
+      "set_id": "cf74ba2f-afc5-4baa-8594-979c889a5831",
+      "scope": "Selected label sections; DailyMed listing alone does not establish approval."
+    },
+    {
+      "id": "pmid-35027405",
+      "title": "Tofacitinib and risk of cardiovascular outcomes: results from the Safety of TofAcitinib in Routine care patients with Rheumatoid Arthritis (STAR-RA) study.",
+      "source_type": "research",
+      "published": "2022-01-13",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35027405/",
+      "retrieved_at": "2026-11-16T01:32:28.619847+00:00",
+      "sha256": "37313c2e6d3bb88279eeba5de9f96bccd351cf882ebd6c26d22a5ca63c8a365c",
+      "pmid": "35027405",
+      "doi": "10.1136/annrheumdis-2021-221915",
+      "scope": "Abstract only. No claim of full-text appraisal."
+    },
+    {
+      "id": "pmid-35081280",
+      "title": "Cardiovascular and Cancer Risk with Tofacitinib in Rheumatoid Arthritis.",
+      "source_type": "research",
+      "published": "2022-01-27",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35081280/",
+      "retrieved_at": "2026-11-16T01:32:28.619847+00:00",
+      "sha256": "62c004d8f05cbcdc27cc21f1a3e6a62cebe4c36db47372d62c9acf4df983fad5",
+      "pmid": "35081280",
+      "doi": "10.1056/NEJMoa2109927",
+      "scope": "Abstract only. No claim of full-text appraisal."
+    }
+  ],
+  "trace": [
+    {
+      "stage": "plan",
+      "tool": "model_plan",
+      "output": {
+        "in_scope": true,
+        "reason": "The question requests a comparison of the design, patient populations, and cardiovascular findings between ORAL Surveillance and STAR-RA, along with the limitations of the indexed abstracts, which aligns directly with the provided research and regulatory documents.",
+        "searches": [
+          {
+            "query": "ORAL Surveillance STAR-RA design patient population cardiovascular findings MACE",
+            "source_type": "research"
+          },
+          {
+            "query": "tofacitinib cardiovascular safety communication MACE ORAL Surveillance",
+            "source_type": "regulatory"
+          },
+          {
+            "query": "Xeljanz boxed warning cardiovascular MACE rheumatoid arthritis indication",
+            "source_type": "label"
+          }
+        ]
+      }
+    },
+    {
+      "stage": "plan",
+      "policy": "Safety briefs check all three source categories. Missing typed queries use the user question.",
+      "effective_searches": [
+        {
+          "query": "ORAL Surveillance STAR-RA design patient population cardiovascular findings MACE",
+          "source_type": "research"
+        },
+        {
+          "query": "tofacitinib cardiovascular safety communication MACE ORAL Surveillance",
+          "source_type": "regulatory"
+        },
+        {
+          "query": "Xeljanz boxed warning cardiovascular MACE rheumatoid arthritis indication",
+          "source_type": "label"
+        }
+      ]
+    },
+    {
+      "stage": "retrieve",
+      "calls": [
+        {
+          "tool": "search_evidence",
+          "arguments": {
+            "query": "ORAL Surveillance STAR-RA design patient population cardiovascular findings MACE",
+            "source_type": "research",
+            "as_of": "2026-11-15"
+          },
+          "passage_ids": [
+            "pmid-35027405-e31c1e0e2f",
+            "pmid-35027405-3984242e01",
+            "pmid-35081280-3df021ee3e",
+            "pmid-35081280-b8cafa5357",
+            "pmid-35081280-89a0082286",
+            "pmid-35027405-1e63b57282"
+          ]
+        },
+        {
+          "tool": "search_evidence",
+          "arguments": {
+            "query": "tofacitinib cardiovascular safety communication MACE ORAL Surveillance",
+            "source_type": "regulatory",
+            "as_of": "2026-11-15"
+          },
+          "passage_ids": [
+            "fda-2021-bcae7ef825",
+            "fda-2021-beddb74c61",
+            "fda-2021-9fb5bbc3a7",
+            "fda-2021-b26f00bb77",
+            "fda-2021-94f8f1c660",
+            "fda-2021-449f74b672"
+          ]
+        },
+        {
+          "tool": "search_evidence",
+          "arguments": {
+            "query": "Xeljanz boxed warning cardiovascular MACE rheumatoid arthritis indication",
+            "source_type": "label",
+            "as_of": "2026-11-15"
+          },
+          "passage_ids": [
+            "label-xeljanz-4498443279",
+            "label-xeljanz-2b00687592",
+            "label-xeljanz-641067f66b",
+            "label-xeljanz-3736bc93f2",
+            "label-xeljanz-f61d774867",
+            "label-xeljanz-ee7252ad51"
+          ]
+        }
+      ],
+      "retrieval_mode": "preloaded_index"
+    },
+    {
+      "stage": "draft",
+      "claim_count": 7
+    },
+    {
+      "stage": "verify",
+      "completed": true
+    },
+    {
+      "stage": "finalize",
+      "accepted": 6,
+      "withheld": 1
+    }
+  ],
+  "usage": [
+    {
+      "stage": "Plan",
+      "input_tokens": 800,
+      "output_tokens": 177,
+      "seconds": 5.034
+    },
+    {
+      "stage": "Draft",
+      "input_tokens": 11564,
+      "output_tokens": 1051,
+      "seconds": 10.393
+    },
+    {
+      "stage": "Verification",
+      "input_tokens": 11918,
+      "output_tokens": 783,
+      "seconds": 6.246
+    }
+  ],
+  "review_status": "Human review required",
+  "data_notice": "Indexed public source snapshots; research abstracts are not full-text reviews. Date filtering does not reconstruct historical website edits.",
+  "verification_notice": "Model-assessed support plus deterministic citation/date checks. Not independent clinical validation.",
+  "elapsed_seconds": 22.89
+}

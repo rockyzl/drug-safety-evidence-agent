@@ -10,6 +10,13 @@ test -f app/data/corpus.json
 test -f reports/evaluation.json
 test -f reports/saved-example.json
 test -f reports/vertex-smoke.json
+python - <<'PY'
+import json
+from pathlib import Path
+for item in json.loads(Path('app/data/examples.json').read_text()):
+    result = json.loads((Path('reports/examples') / (item['id'] + '.json')).read_text())
+    assert result['question'] == item['question'] and result['as_of'] == item['as_of'], item['id']
+PY
 gcloud builds submit --project "$CLOUD_PROJECT" --tag "$IMAGE" --quiet
 gcloud run deploy "$SERVICE" --project "$CLOUD_PROJECT" --region "$DEPLOY_REGION" \
   --image "$IMAGE" --service-account "evidence-desk@$CLOUD_PROJECT.iam.gserviceaccount.com" \

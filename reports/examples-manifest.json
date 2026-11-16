@@ -1,0 +1,79 @@
+{
+  "created_at": "2026-11-16T04:59:12.515289+00:00",
+  "examples": [
+    {
+      "id": "safety-brief",
+      "run_id": "39ae3102f54d42ecb6f84c3ddcab8b62",
+      "recorded_at": "2026-11-16T04:40:43.884690+00:00",
+      "provider": "vertex",
+      "model": "google/gemini-3.8-flash",
+      "reused_recorded_run": true,
+      "model_calls": 3,
+      "published_claims": 7,
+      "source_count": 4,
+      "as_of": "2026-11-15"
+    },
+    {
+      "id": "study-differences",
+      "run_id": "25c8a7c9c3784d5db449ca7867740ce7",
+      "recorded_at": "2026-11-16T04:58:47.872512+00:00",
+      "provider": "vertex",
+      "model": "google/gemini-3.8-flash",
+      "reused_recorded_run": false,
+      "model_calls": 3,
+      "published_claims": 6,
+      "source_count": 4,
+      "as_of": "2026-11-15"
+    },
+    {
+      "id": "fda-warning",
+      "run_id": "38097a66aa8a4df3835eab15cc34d399",
+      "recorded_at": "2026-11-16T04:41:18.621511+00:00",
+      "provider": "vertex",
+      "model": "google/gemini-3.8-flash",
+      "reused_recorded_run": true,
+      "model_calls": 3,
+      "published_claims": 5,
+      "source_count": 4,
+      "as_of": "2026-11-15"
+    },
+    {
+      "id": "label-review",
+      "run_id": "dfc7fa9b30fb41ac86759e5c9c252d98",
+      "recorded_at": "2026-11-16T04:59:10.320541+00:00",
+      "provider": "vertex",
+      "model": "google/gemini-3.8-flash",
+      "reused_recorded_run": false,
+      "model_calls": 3,
+      "published_claims": 8,
+      "source_count": 4,
+      "as_of": "2026-11-15"
+    },
+    {
+      "id": "history-2021",
+      "run_id": "fc46e5b0f97f43479bf415dd65a81fd9",
+      "recorded_at": "2026-11-16T04:40:58.401446+00:00",
+      "provider": "vertex",
+      "model": "google/gemini-3.8-flash",
+      "reused_recorded_run": true,
+      "model_calls": 3,
+      "published_claims": 5,
+      "source_count": 1,
+      "as_of": "2021-12-31"
+    },
+    {
+      "id": "no-evidence",
+      "run_id": "4382758b1d3a47a084c145719ace6b17",
+      "recorded_at": "2026-11-16T04:59:12.514687+00:00",
+      "provider": "vertex",
+      "model": "google/gemini-3.8-flash",
+      "reused_recorded_run": false,
+      "model_calls": 1,
+      "published_claims": 0,
+      "source_count": 0,
+      "as_of": "2020-12-31"
+    }
+  ],
+  "corpus_sha256": "51d806f7879311328fc6a16b3ca16cfaadbdb305c2f99d3e36866bc0b5b729da",
+  "note": "Six recorded real model runs for exploration, not six independent accuracy tests. Existing matching Vertex runs are reused with their original IDs and timestamps."
+}

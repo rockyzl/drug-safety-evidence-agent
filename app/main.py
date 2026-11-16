@@ -18,6 +18,7 @@ from .retrieval import EvidenceStore
 
 ROOT = Path(__file__).resolve().parents[1]
 STATIC = ROOT/'app/static'
+EXAMPLES = json.loads((ROOT/'app/data/examples.json').read_text())
 slots = threading.BoundedSemaphore(2)
 rate_lock = threading.Lock()
 requests_seen = deque()
@@ -74,6 +75,22 @@ def example():
     path = ROOT/'reports/saved-example.json'
     if not path.exists():
         raise HTTPException(404, 'Saved example is not available yet. Run the agent instead.')
+    return json.loads(path.read_text())
+
+
+@app.get('/api/examples')
+def examples():
+    return EXAMPLES
+
+
+@app.get('/api/examples/{example_id}')
+def saved_example(example_id: str):
+    # Only catalogued IDs may select a public result file.
+    if example_id not in {item['id'] for item in EXAMPLES}:
+        raise HTTPException(404, 'Unknown example.')
+    path = ROOT/'reports/examples'/f'{example_id}.json'
+    if not path.exists():
+        raise HTTPException(404, 'This recorded example is not available yet.')
     return json.loads(path.read_text())
 
 

@@ -1,0 +1,44 @@
+[
+  {
+    "id": "safety-brief",
+    "title": "Prepare a safety-team brief",
+    "description": "Bring research, FDA statements and the label together.",
+    "question": "Prepare a brief for our drug-safety team on tofacitinib cardiovascular risk. Compare ORAL Surveillance and STAR-RA, explain what the FDA safety communication and indexed prescribing information say, and identify uncertainties for human review.",
+    "as_of": "2026-11-15"
+  },
+  {
+    "id": "study-differences",
+    "title": "Why do the studies differ?",
+    "description": "Compare study design, patient groups and uncertainty.",
+    "question": "Compare the design and patient populations of ORAL Surveillance and STAR-RA. How could those differences affect interpretation of cardiovascular findings, and what can the indexed abstracts not establish?",
+    "as_of": "2026-11-15"
+  },
+  {
+    "id": "fda-warning",
+    "title": "Did FDA remove the warning?",
+    "description": "Separate a research finding from a regulatory action.",
+    "question": "Does the STAR-RA result by itself establish that FDA withdrew its tofacitinib warning? Compare the actual research, FDA communication and indexed label.",
+    "as_of": "2026-11-15"
+  },
+  {
+    "id": "label-review",
+    "title": "What does the label say?",
+    "description": "Inspect cardiovascular warnings in a dated label version.",
+    "question": "What cardiovascular warnings and study results are stated in the indexed Xeljanz prescribing information? Identify the version date and distinguish the label's statements from the research findings.",
+    "as_of": "2026-11-15"
+  },
+  {
+    "id": "history-2021",
+    "title": "What was available in 2021?",
+    "description": "Exclude newer papers and the later label snapshot.",
+    "question": "Prepare a tofacitinib safety brief from the indexed FDA, research and label sources available by the cutoff.",
+    "as_of": "2021-12-31"
+  },
+  {
+    "id": "no-evidence",
+    "title": "What if no sources qualify?",
+    "description": "Use a 2020 cutoff and see the agent acknowledge the gap.",
+    "question": "Prepare a tofacitinib safety brief from the indexed FDA, research and label sources available by the cutoff.",
+    "as_of": "2020-12-31"
+  }
+]

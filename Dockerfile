@@ -6,6 +6,7 @@ COPY pyproject.toml uv.lock ./
 RUN uv sync --frozen --no-dev
 COPY app ./app
 COPY reports/saved-example.json reports/evaluation.json reports/vertex-smoke.json ./reports/
+COPY reports/examples ./reports/examples
 RUN useradd --create-home --uid 10001 appuser && chown -R appuser:appuser /app/app/data
 USER appuser
 ENV PATH="/app/.venv/bin:$PATH" PORT=8080

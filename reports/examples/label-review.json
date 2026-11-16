@@ -1,0 +1,369 @@
+{
+  "run_id": "dfc7fa9b30fb41ac86759e5c9c252d98",
+  "question": "What cardiovascular warnings and study results are stated in the indexed Xeljanz prescribing information? Identify the version date and distinguish the label's statements from the research findings.",
+  "as_of": "2026-11-15",
+  "pipeline_version": "safety-brief-v2",
+  "mode": "safety_brief",
+  "retrieval_mode": "preloaded_index",
+  "coverage": [
+    {
+      "source_type": "research",
+      "title": "Research evidence",
+      "retrieved_sources": 2,
+      "supported_claims": 2
+    },
+    {
+      "source_type": "regulatory",
+      "title": "FDA regulatory communication",
+      "retrieved_sources": 1,
+      "supported_claims": 2
+    },
+    {
+      "source_type": "label",
+      "title": "Prescribing information",
+      "retrieved_sources": 1,
+      "supported_claims": 3
+    }
+  ],
+  "brief_complete": true,
+  "created_at": "2026-11-16T04:59:10.320541+00:00",
+  "status": "research_draft",
+  "provider": "vertex",
+  "model": "google/gemini-3.8-flash",
+  "claims": [
+    {
+      "section": "label",
+      "text": "The indexed Xeljanz prescribing information (dated November 10, 2026) warns that patients with rheumatoid arthritis aged 50 and older with at least one cardiovascular risk factor had higher rates of major adverse cardiovascular events (MACE) and all-cause mortality compared to those treated with TNF blockers.",
+      "citations": [
+        {
+          "passage_id": "label-xeljanz-3736bc93f2",
+          "source_id": "label-xeljanz",
+          "section": "5.4 Major Adverse Cardiovascular Events",
+          "quote": "higher rate of major adverse cardiovascular events"
+        },
+        {
+          "passage_id": "label-xeljanz-2b00687592",
+          "source_id": "label-xeljanz",
+          "section": "5.2 Increased Risk of Mortality",
+          "quote": "higher observed rate of all-cause mortality"
+        }
+      ],
+      "claim_index": 0,
+      "verdict": "supported",
+      "mechanical_checks_passed": true,
+      "reason": "The cited label passages from the indexed prescribing information (published 2026-11-10) confirm that in RA Safety Study 1, RA patients aged 50 and older with at least one CV risk factor had higher rates of MACE and an increased observed rate of all-cause mortality compared to those treated with TNF blockers.",
+      "included_in_brief": true
+    },
+    {
+      "section": "label",
+      "text": "According to the November 10, 2026 prescribing information, RA Safety Study 1 failed to meet its non-inferiority criterion for MACE because the upper bound of the 95% confidence interval exceeded 1.8 when comparing combined tofacitinib doses to TNF blockers.",
+      "citations": [
+        {
+          "passage_id": "label-xeljanz-4498443279",
+          "source_id": "label-xeljanz",
+          "section": "14.6 Safety Study in Adults with Rheumatoid Arthritis (XELJANZ Versus TNF-blocker)",
+          "quote": "non-inferiority criterion was not met for the"
+        }
+      ],
+      "claim_index": 1,
+      "verdict": "supported",
+      "mechanical_checks_passed": true,
+      "reason": "Passage label-xeljanz-4498443279 explicitly states that the non-inferiority criterion of 1.8 was not met for the primary comparison of combined XELJANZ dosages to TNF blockers, with the upper limit of the 95% CI reaching 1.94 for MACE.",
+      "included_in_brief": true
+    },
+    {
+      "section": "label",
+      "text": "The indexed prescribing information (dated November 10, 2026) lists MACE incidence rates per 100 patient-years in RA Safety Study 1 as 1.11 for tofacitinib 10 mg twice daily, 0.91 for 5 mg twice daily, and 0.79 for TNF blockers.",
+      "citations": [
+        {
+          "passage_id": "label-xeljanz-3736bc93f2",
+          "source_id": "label-xeljanz",
+          "section": "5.4 Major Adverse Cardiovascular Events",
+          "quote": ""
+        }
+      ],
+      "claim_index": 2,
+      "verdict": "supported",
+      "mechanical_checks_passed": true,
+      "reason": "Passage label-xeljanz-3736bc93f2 confirms that MACE incidence rates per 100 patient-years were 1.11 for tofacitinib 10 mg twice daily, 0.91 for 5 mg twice daily, and 0.79 for TNF blockers.",
+      "included_in_brief": true
+    },
+    {
+      "section": "regulatory",
+      "text": "In a September 1, 2021 safety communication, the FDA concluded from a randomized clinical trial in patients with rheumatoid arthritis that tofacitinib is associated with an increased risk of serious heart-related events compared to TNF blockers.",
+      "citations": [
+        {
+          "passage_id": "fda-2021-9fb5bbc3a7",
+          "source_id": "fda-2021",
+          "section": "What safety concern is FDA announcing?",
+          "quote": "concluded there is an increased risk of serious heart-related events"
+        }
+      ],
+      "claim_index": 3,
+      "verdict": "supported",
+      "mechanical_checks_passed": true,
+      "reason": "Passage fda-2021-9fb5bbc3a7 from the September 1, 2021 safety communication states that based on a completed review of a large randomized safety clinical trial in RA patients comparing Xeljanz with TNF blockers, FDA concluded there is an increased risk of serious heart-related events.",
+      "included_in_brief": true
+    },
+    {
+      "section": "regulatory",
+      "text": "The FDA stated on September 1, 2021, that it required updated warnings regarding major adverse cardiovascular events across Janus kinase inhibitors following the trial evaluation.",
+      "citations": [
+        {
+          "passage_id": "fda-2021-bcae7ef825",
+          "source_id": "fda-2021",
+          "section": "Additional Information for Health Care Professionals",
+          "quote": "FDA is requiring new and updated warnings about an increased"
+        }
+      ],
+      "claim_index": 4,
+      "verdict": "supported",
+      "mechanical_checks_passed": true,
+      "reason": "Passage fda-2021-bcae7ef825 confirms that FDA required new and updated warnings about an increased risk of MACE across JAK inhibitors (Xeljanz, Olumiant, Rinvoq) on September 1, 2021.",
+      "included_in_brief": true
+    },
+    {
+      "section": "research",
+      "text": "In the randomized, open-label ORAL Surveillance trial of rheumatoid arthritis patients aged 50 and older with cardiovascular risk factors, combined tofacitinib doses yielded higher risks of MACE compared to a TNF inhibitor and failed noninferiority criteria.",
+      "citations": [
+        {
+          "passage_id": "pmid-35081280-3df021ee3e",
+          "source_id": "pmid-35081280",
+          "section": "Abstract / CONCLUSIONS",
+          "quote": "risks of MACE and cancers were higher with tofacitinib and did not meet noninferiority criteria"
+        }
+      ],
+      "claim_index": 5,
+      "verdict": "supported",
+      "mechanical_checks_passed": true,
+      "reason": "Passages pmid-35081280-3df021ee3e and pmid-35081280-b8cafa5357 corroborate that ORAL Surveillance was a randomized, open-label trial in RA patients aged 50 and older with CV risk factors where combined tofacitinib doses had higher risks of MACE versus a TNF inhibitor and failed noninferiority criteria.",
+      "included_in_brief": true
+    },
+    {
+      "section": "research",
+      "text": "In the observational STAR-RA cohort study of routine care rheumatoid arthritis patients, researchers did not observe an increased risk of cardiovascular outcomes with tofacitinib versus TNF inhibitors, though an increased risk was non-significantly observed in patients with baseline cardiovascular risk factors.",
+      "citations": [
+        {
+          "passage_id": "pmid-35027405-1e63b57282",
+          "source_id": "pmid-35027405",
+          "section": "Abstract / CONCLUSIONS",
+          "quote": "did not find evidence for an increased risk of cardiovascular outcomes with tofacitinib in patients with RA"
+        }
+      ],
+      "claim_index": 6,
+      "verdict": "supported",
+      "mechanical_checks_passed": true,
+      "reason": "Passage pmid-35027405-1e63b57282 confirms that in the STAR-RA real-world cohort study, researchers did not find evidence for an increased risk of CV outcomes overall, but observed an increased risk that was statistically non-significant in patients with baseline cardiovascular risk factors.",
+      "included_in_brief": true
+    },
+    {
+      "section": "synthesis",
+      "text": "Both the randomized ORAL Surveillance study and the indexed label (dated November 10, 2026) report that tofacitinib missed non-inferiority benchmarks for MACE versus TNF blockers in older RA patients with cardiovascular risk factors.",
+      "citations": [
+        {
+          "passage_id": "pmid-35081280-3df021ee3e",
+          "source_id": "pmid-35081280",
+          "section": "Abstract / CONCLUSIONS",
+          "quote": "did not meet noninferiority criteria"
+        },
+        {
+          "passage_id": "label-xeljanz-4498443279",
+          "source_id": "label-xeljanz",
+          "section": "14.6 Safety Study in Adults with Rheumatoid Arthritis (XELJANZ Versus TNF-blocker)",
+          "quote": ""
+        }
+      ],
+      "claim_index": 7,
+      "verdict": "supported",
+      "mechanical_checks_passed": true,
+      "reason": "Passages pmid-35081280-3df021ee3e and label-xeljanz-4498443279 support that both the ORAL Surveillance study and the indexed label report that tofacitinib failed to meet non-inferiority benchmarks for MACE versus TNF blockers in older RA patients with cardiovascular risk factors.",
+      "included_in_brief": true
+    }
+  ],
+  "answer": "The indexed Xeljanz prescribing information (dated November 10, 2026) warns that patients with rheumatoid arthritis aged 50 and older with at least one cardiovascular risk factor had higher rates of major adverse cardiovascular events (MACE) and all-cause mortality compared to those treated with TNF blockers. According to the November 10, 2026 prescribing information, RA Safety Study 1 failed to meet its non-inferiority criterion for MACE because the upper bound of the 95% confidence interval exceeded 1.8 when comparing combined tofacitinib doses to TNF blockers. The indexed prescribing information (dated November 10, 2026) lists MACE incidence rates per 100 patient-years in RA Safety Study 1 as 1.11 for tofacitinib 10 mg twice daily, 0.91 for 5 mg twice daily, and 0.79 for TNF blockers. In a September 1, 2021 safety communication, the FDA concluded from a randomized clinical trial in patients with rheumatoid arthritis that tofacitinib is associated with an increased risk of serious heart-related events compared to TNF blockers. The FDA stated on September 1, 2021, that it required updated warnings regarding major adverse cardiovascular events across Janus kinase inhibitors following the trial evaluation. In the randomized, open-label ORAL Surveillance trial of rheumatoid arthritis patients aged 50 and older with cardiovascular risk factors, combined tofacitinib doses yielded higher risks of MACE compared to a TNF inhibitor and failed noninferiority criteria. In the observational STAR-RA cohort study of routine care rheumatoid arthritis patients, researchers did not observe an increased risk of cardiovascular outcomes with tofacitinib versus TNF inhibitors, though an increased risk was non-significantly observed in patients with baseline cardiovascular risk factors. Both the randomized ORAL Surveillance study and the indexed label (dated November 10, 2026) report that tofacitinib missed non-inferiority benchmarks for MACE versus TNF blockers in older RA patients with cardiovascular risk factors.",
+  "limitations": [
+    "Do the full texts of the cited research studies provide further breakdown of cardiovascular risk across individual baseline risk factors?",
+    "Does the indexed prescribing information outline different risk thresholds for patients without baseline cardiovascular risk factors?"
+  ],
+  "sources": [
+    {
+      "id": "fda-2021",
+      "title": "FDA safety communication: JAK inhibitors",
+      "source_type": "regulatory",
+      "published": "2021-09-01",
+      "url": "https://www.fda.gov/drugs/drug-safety-and-availability/fda-requires-warnings-about-increased-risk-serious-heart-related-events-cancer-blood-clots-and-death",
+      "retrieved_at": "2026-11-16T01:32:28.619847+00:00",
+      "sha256": "faa3bd429ca0847905a6a3d982b72c427d1d8e6705aad72910e2f3ec511c847d",
+      "scope": "Public regulatory communication; source date filter is not a reconstructed historical website."
+    },
+    {
+      "id": "label-xeljanz",
+      "title": "Xeljanz / Xeljanz XR prescribing information",
+      "source_type": "label",
+      "published": "2026-11-10",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=cf74ba2f-afc5-4baa-8594-979c889a5831",
+      "retrieved_at": "2026-11-16T01:32:28.619847+00:00",
+      "sha256": "2de03ef78a7efa43828a7201b282b0cf605820d8bc02cef855ab0b62197ced2c",
+      "version": "56",
+      "set_id": "cf74ba2f-afc5-4baa-8594-979c889a5831",
+      "scope": "Selected label sections; DailyMed listing alone does not establish approval."
+    },
+    {
+      "id": "pmid-35027405",
+      "title": "Tofacitinib and risk of cardiovascular outcomes: results from the Safety of TofAcitinib in Routine care patients with Rheumatoid Arthritis (STAR-RA) study.",
+      "source_type": "research",
+      "published": "2022-01-13",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35027405/",
+      "retrieved_at": "2026-11-16T01:32:28.619847+00:00",
+      "sha256": "37313c2e6d3bb88279eeba5de9f96bccd351cf882ebd6c26d22a5ca63c8a365c",
+      "pmid": "35027405",
+      "doi": "10.1136/annrheumdis-2021-221915",
+      "scope": "Abstract only. No claim of full-text appraisal."
+    },
+    {
+      "id": "pmid-35081280",
+      "title": "Cardiovascular and Cancer Risk with Tofacitinib in Rheumatoid Arthritis.",
+      "source_type": "research",
+      "published": "2022-01-27",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35081280/",
+      "retrieved_at": "2026-11-16T01:32:28.619847+00:00",
+      "sha256": "62c004d8f05cbcdc27cc21f1a3e6a62cebe4c36db47372d62c9acf4df983fad5",
+      "pmid": "35081280",
+      "doi": "10.1056/NEJMoa2109927",
+      "scope": "Abstract only. No claim of full-text appraisal."
+    }
+  ],
+  "trace": [
+    {
+      "stage": "plan",
+      "tool": "model_plan",
+      "output": {
+        "in_scope": true,
+        "reason": "The question requests cardiovascular warnings and study results from the indexed Xeljanz prescribing information, its version date, and a comparison with research findings, which directly aligns with the preloaded regulatory, label, and research collection.",
+        "searches": [
+          {
+            "query": "tofacitinib cardiovascular major adverse cardiovascular events ORAL Surveillance STAR-RA study design findings",
+            "source_type": "research"
+          },
+          {
+            "query": "FDA safety communication tofacitinib Xeljanz September 2021 cardiovascular risk MACE regulatory actions",
+            "source_type": "regulatory"
+          },
+          {
+            "query": "Xeljanz tofacitinib boxed warning cardiovascular events MACE clinical trials label version indication",
+            "source_type": "label"
+          }
+        ]
+      }
+    },
+    {
+      "stage": "plan",
+      "policy": "Safety briefs check all three source categories. Missing typed queries use the user question.",
+      "effective_searches": [
+        {
+          "query": "tofacitinib cardiovascular major adverse cardiovascular events ORAL Surveillance STAR-RA study design findings",
+          "source_type": "research"
+        },
+        {
+          "query": "FDA safety communication tofacitinib Xeljanz September 2021 cardiovascular risk MACE regulatory actions",
+          "source_type": "regulatory"
+        },
+        {
+          "query": "Xeljanz tofacitinib boxed warning cardiovascular events MACE clinical trials label version indication",
+          "source_type": "label"
+        }
+      ]
+    },
+    {
+      "stage": "retrieve",
+      "calls": [
+        {
+          "tool": "search_evidence",
+          "arguments": {
+            "query": "tofacitinib cardiovascular major adverse cardiovascular events ORAL Surveillance STAR-RA study design findings",
+            "source_type": "research",
+            "as_of": "2026-11-15"
+          },
+          "passage_ids": [
+            "pmid-35027405-3984242e01",
+            "pmid-35027405-e31c1e0e2f",
+            "pmid-35081280-89a0082286",
+            "pmid-35081280-3df021ee3e",
+            "pmid-35027405-1e63b57282",
+            "pmid-35081280-b8cafa5357"
+          ]
+        },
+        {
+          "tool": "search_evidence",
+          "arguments": {
+            "query": "FDA safety communication tofacitinib Xeljanz September 2021 cardiovascular risk MACE regulatory actions",
+            "source_type": "regulatory",
+            "as_of": "2026-11-15"
+          },
+          "passage_ids": [
+            "fda-2021-9fb5bbc3a7",
+            "fda-2021-beddb74c61",
+            "fda-2021-bcae7ef825",
+            "fda-2021-449f74b672",
+            "fda-2021-ccd9646fb3",
+            "fda-2021-78c4d0db0f"
+          ]
+        },
+        {
+          "tool": "search_evidence",
+          "arguments": {
+            "query": "Xeljanz tofacitinib boxed warning cardiovascular events MACE clinical trials label version indication",
+            "source_type": "label",
+            "as_of": "2026-11-15"
+          },
+          "passage_ids": [
+            "label-xeljanz-3736bc93f2",
+            "label-xeljanz-4498443279",
+            "label-xeljanz-2ab3cc3190",
+            "label-xeljanz-641067f66b",
+            "label-xeljanz-2b00687592",
+            "label-xeljanz-f61d774867"
+          ]
+        }
+      ],
+      "retrieval_mode": "preloaded_index"
+    },
+    {
+      "stage": "draft",
+      "claim_count": 8
+    },
+    {
+      "stage": "verify",
+      "completed": true
+    },
+    {
+      "stage": "finalize",
+      "accepted": 8,
+      "withheld": 0
+    }
+  ],
+  "usage": [
+    {
+      "stage": "Plan",
+      "input_tokens": 799,
+      "output_tokens": 198,
+      "seconds": 3.012
+    },
+    {
+      "stage": "Draft",
+      "input_tokens": 11993,
+      "output_tokens": 1262,
+      "seconds": 9.144
+    },
+    {
+      "stage": "Verification",
+      "input_tokens": 12532,
+      "output_tokens": 745,
+      "seconds": 9.101
+    }
+  ],
+  "review_status": "Human review required",
+  "data_notice": "Indexed public source snapshots; research abstracts are not full-text reviews. Date filtering does not reconstruct historical website edits.",
+  "verification_notice": "Model-assessed support plus deterministic citation/date checks. Not independent clinical validation.",
+  "elapsed_seconds": 22.44
+}

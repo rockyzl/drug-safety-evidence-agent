@@ -1,0 +1,139 @@
+{
+  "run_id": "4382758b1d3a47a084c145719ace6b17",
+  "question": "Prepare a tofacitinib safety brief from the indexed FDA, research and label sources available by the cutoff.",
+  "as_of": "2020-12-31",
+  "pipeline_version": "safety-brief-v2",
+  "mode": "safety_brief",
+  "retrieval_mode": "preloaded_index",
+  "coverage": [
+    {
+      "source_type": "research",
+      "title": "Research evidence",
+      "retrieved_sources": 0,
+      "supported_claims": 0
+    },
+    {
+      "source_type": "regulatory",
+      "title": "FDA regulatory communication",
+      "retrieved_sources": 0,
+      "supported_claims": 0
+    },
+    {
+      "source_type": "label",
+      "title": "Prescribing information",
+      "retrieved_sources": 0,
+      "supported_claims": 0
+    }
+  ],
+  "brief_complete": false,
+  "created_at": "2026-11-16T04:59:12.514687+00:00",
+  "status": "insufficient_evidence",
+  "provider": "vertex",
+  "model": "google/gemini-3.8-flash",
+  "claims": [],
+  "answer": "The available evidence did not produce a fully supported research brief. Inspect the limitations and checks below.",
+  "limitations": [
+    "No source in this collection met the date and topic filters."
+  ],
+  "sources": [],
+  "trace": [
+    {
+      "stage": "plan",
+      "tool": "model_plan",
+      "output": {
+        "in_scope": true,
+        "reason": "The request asks for a safety brief on tofacitinib based on research, regulatory, and label evidence, conforming to the safety_brief mode requirements.",
+        "searches": [
+          {
+            "query": "tofacitinib study design populations methods safety findings ORAL Surveillance STAR-RA",
+            "source_type": "research"
+          },
+          {
+            "query": "FDA safety communication tofacitinib concerns warnings actions",
+            "source_type": "regulatory"
+          },
+          {
+            "query": "tofacitinib Xeljanz boxed warning indications",
+            "source_type": "label"
+          }
+        ]
+      }
+    },
+    {
+      "stage": "plan",
+      "policy": "Safety briefs check all three source categories. Missing typed queries use the user question.",
+      "effective_searches": [
+        {
+          "query": "tofacitinib study design populations methods safety findings ORAL Surveillance STAR-RA",
+          "source_type": "research"
+        },
+        {
+          "query": "FDA safety communication tofacitinib concerns warnings actions",
+          "source_type": "regulatory"
+        },
+        {
+          "query": "tofacitinib Xeljanz boxed warning indications",
+          "source_type": "label"
+        }
+      ]
+    },
+    {
+      "stage": "retrieve",
+      "calls": [
+        {
+          "tool": "search_evidence",
+          "arguments": {
+            "query": "tofacitinib study design populations methods safety findings ORAL Surveillance STAR-RA",
+            "source_type": "research",
+            "as_of": "2020-12-31"
+          },
+          "passage_ids": []
+        },
+        {
+          "tool": "search_evidence",
+          "arguments": {
+            "query": "FDA safety communication tofacitinib concerns warnings actions",
+            "source_type": "regulatory",
+            "as_of": "2020-12-31"
+          },
+          "passage_ids": []
+        },
+        {
+          "tool": "search_evidence",
+          "arguments": {
+            "query": "tofacitinib Xeljanz boxed warning indications",
+            "source_type": "label",
+            "as_of": "2020-12-31"
+          },
+          "passage_ids": []
+        }
+      ],
+      "retrieval_mode": "preloaded_index"
+    },
+    {
+      "stage": "draft",
+      "claim_count": 0
+    },
+    {
+      "stage": "verify",
+      "completed": true
+    },
+    {
+      "stage": "finalize",
+      "accepted": 0,
+      "withheld": 0
+    }
+  ],
+  "usage": [
+    {
+      "stage": "Plan",
+      "input_tokens": 788,
+      "output_tokens": 122,
+      "seconds": 2.181
+    }
+  ],
+  "review_status": "Human review required",
+  "data_notice": "Indexed public source snapshots; research abstracts are not full-text reviews. Date filtering does not reconstruct historical website edits.",
+  "verification_notice": "Model-assessed support plus deterministic citation/date checks. Not independent clinical validation.",
+  "elapsed_seconds": 2.18
+}

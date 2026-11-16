@@ -9,12 +9,25 @@ A working, source-linked drug-safety research demo built as an independent learn
 
 ## Try it
 
-1. Open the live demo and select **Try a saved example** for a recorded real safety-team briefing. Study evidence, FDA communication, prescribing information and cross-source interpretation appear separately.
+1. Open the live demo and choose one of the **six example questions** for a recorded real model result. Selecting an example loads its question and date cutoff together; it does not invoke the model. Study evidence, FDA communication, prescribing information and cross-source interpretation appear separately.
 2. Select **Run agent** for a new real model call. The page shows actual server progress.
 3. Check **Source coverage**: documents retrieved and claims accepted are counted separately. Expand a source under a claim to inspect its context.
 4. Inspect any withheld claims and the agent's tool calls.
 
 The live model is **Vertex AI google/gemini-3.8-flash**, with **Vertex text-embedding-005** embeddings. A real LangGraph workflow selects bounded search-tool calls, retrieves evidence from Chroma, drafts cited claims, and checks each claim before including it. This is a research prototype, not clinical decision support.
+
+### Example questions
+
+| Example | What to inspect |
+|---|---|
+| Prepare a safety-team brief | Research, FDA and label perspectives in one draft |
+| Why do the studies differ? | Study design, populations and interpretation limits |
+| Did FDA remove the warning? | The distinction between research findings and regulatory action |
+| What does the label say? | Cardiovascular warnings and the indexed label version |
+| What was available in 2021? | Only the indexed FDA communication passes this cutoff |
+| What if no sources qualify? | A 2020 cutoff leaves this collection empty; no claims are published |
+
+These are six scenarios within the same small tofacitinib collection, not six different drug databases. Each saved answer is an actual Vertex run with its own timestamp and run ID. Three matching earlier runs are reused, and three were newly generated. The [example manifest](reports/examples-manifest.json) records their provenance. The examples illustrate behavior, not independent accuracy scores. To regenerate missing examples after preparing the index, run `uv run python scripts/with_google_login.py scripts/generate_examples.py` with `GOOGLE_CLOUD_PROJECT` set.
 
 ## Stack and real integrations
 
