@@ -18,7 +18,41 @@
     "no JavaScript errors"
   ],
   "layout_followup": "FDA and label dates visible; accepted-check explanations collapsed; 390px coverage layout inspected.",
-  "cloud_verification": "pending Vertex deployment",
+  "cloud_verification": {
+    "url": "https://drug-safety-evidence-agent-1038659864130.us-central1.run.app",
+    "revision": "drug-safety-evidence-agent-00003-n2q",
+    "traffic_percent": 100,
+    "source_commit": "e40855c",
+    "image_digest": "sha256:c70ad32a908eda32d79e315e1fecfd9eae16c096875446a4c19219017423699d",
+    "browser_checks": [
+      "saved actual run",
+      "expand citation",
+      "live model run",
+      "actual tool trace",
+      "all three source sections have supported claims",
+      "preloaded-index labeling",
+      "390px no overflow",
+      "429 recovery",
+      "raw corpus unavailable",
+      "no JavaScript errors"
+    ],
+    "endpoints": {
+      "/api/health": {
+        "http_status": 200
+      },
+      "/api/config": {
+        "http_status": 200
+      },
+      "/api/example": {
+        "http_status": 200,
+        "provider": "vertex"
+      },
+      "/api/evaluation": {
+        "http_status": 200,
+        "current_smoke_cases": 4
+      }
+    }
+  },
   "prior_cloud_verification": {
     "url": "https://drug-safety-evidence-agent-1038659864130.us-central1.run.app",
     "revision": "drug-safety-evidence-agent-00001-g2z",
@@ -40,12 +74,13 @@
   },
   "provider_issue": {
     "code": "credit_balance_exhausted",
-    "effect": "Historical OpenAI provider exhausted its credits. Current runtime is being moved to Vertex generation and embeddings.",
+    "effect": "Historical OpenAI quota exhaustion. Resolved for the live demo by switching both generation and embeddings to Vertex AI; the public live workflow was verified after deployment.",
     "detected_during": "v2 final evaluation"
   },
   "current_provider": "vertex",
   "current_model": "google/gemini-3.8-flash",
   "embedding_provider": "vertex",
   "embedding_model": "text-embedding-005",
-  "runtime_smoke": "reports/vertex-smoke.json"
+  "runtime_smoke": "reports/vertex-smoke.json",
+  "verified_at": "2026-11-16T04:46:52.747967+00:00"
 }

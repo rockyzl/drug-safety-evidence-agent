@@ -1,0 +1,16 @@
+{
+  "/api/health": {
+    "http_status": 200
+  },
+  "/api/config": {
+    "http_status": 200
+  },
+  "/api/example": {
+    "http_status": 200,
+    "provider": "vertex"
+  },
+  "/api/evaluation": {
+    "http_status": 200,
+    "current_smoke_cases": 4
+  }
+}
