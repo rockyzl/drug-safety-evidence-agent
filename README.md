@@ -2,8 +2,10 @@
 
 A working, source-linked drug-safety research demo built as an independent learning project. Ask about the apparent difference between ORAL Surveillance and STAR-RA, then inspect the model's search decisions, claim checks and original sources.
 
-**Live demo:** deployment URL is recorded below after verification.  
+**Live demo:** [Open Evidence Desk](https://drug-safety-evidence-agent-1038659864130.us-central1.run.app)  
 **Design:** [Paper canvas](https://app.paper.design/file/01M7GZ4X3RT3H1KPN7BEJK659S)
+
+![Evidence Desk working demo](docs/preview.png)
 
 ## Try it
 
@@ -69,6 +71,7 @@ Anonymous usage is limited to two active runs, 20 runs/hour and 80/day per proce
 
 No patient information, internal pharmaceutical data, safety submissions or production pharmacovigilance integrations are used. Do not submit patient or confidential information. Date filtering excludes newer indexed versions; it does not reconstruct historical pages. Review original sources before using a result.
 
+- [中文五分钟演示讲稿](docs/walkthrough.zh.md)
 - [Architecture and interview explanation](docs/architecture.md)
 - [Design tool research and Paper implementation](docs/design.md)
 - [Source manifest](app/data/source-manifest.json)

@@ -1,0 +1,38 @@
+{
+  "unit_tests": {
+    "passed": 15,
+    "command": "uv run pytest -q"
+  },
+  "local_browser_checks": [
+    "saved run",
+    "expanded source citation",
+    "live model run",
+    "tool trace",
+    "390px layout",
+    "429 recovery",
+    "raw corpus 404",
+    "no JavaScript errors"
+  ],
+  "layout_followup": "Mobile evaluation metric/label overlap corrected and bounding boxes checked.",
+  "browser": "Playwright with Chromium 1228, headless, GPU disabled for this WSL environment.",
+  "evaluation": "reports/evaluation.json",
+  "cloud_verification": {
+    "url": "https://drug-safety-evidence-agent-1038659864130.us-central1.run.app",
+    "revision": "drug-safety-evidence-agent-00001-g2z",
+    "image_digest": "sha256:a650548cfe1defa468e11dc8feaae379497f211e51a7809edf5692aaf260f1d6",
+    "browser_checks": [
+      "saved actual run",
+      "expand citation",
+      "live model run",
+      "actual tool trace",
+      "390px no overflow",
+      "429 recovery",
+      "raw corpus unavailable",
+      "no JavaScript errors"
+    ],
+    "config_http_status": 200,
+    "example_http_status": 200,
+    "evaluation_http_status": 200,
+    "public_health_note": "External /healthz returned an HTML 404; public readiness was verified through /api/config and a real browser agent run. Local /healthz is available."
+  }
+}
