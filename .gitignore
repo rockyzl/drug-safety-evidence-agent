@@ -1,0 +1,12 @@
+.venv/
+.env*
+!.env.example
+.cache/
+.runtime/
+__pycache__/
+.pytest_cache/
+app/data/corpus.json
+app/data/chroma/
+reports/raw/
+*.log
+reports/screenshots/

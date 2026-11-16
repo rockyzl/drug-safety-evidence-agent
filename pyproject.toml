@@ -1,0 +1,13 @@
+[project]
+name = "drug-safety-evidence-agent"
+version = "0.1.0"
+description = "Source-linked drug safety research with a bounded LangGraph agent"
+requires-python = ">=3.11"
+dependencies = ["fastapi>=0.115,<1", "uvicorn[standard]>=0.30,<1", "pydantic>=2.9,<3", "httpx>=0.27,<1", "openai>=1.60,<3", "langgraph>=0.2,<2", "chromadb>=1.0,<2", "beautifulsoup4>=4.12,<5", "lxml>=5,<7", "boto3>=1.35,<2"]
+
+[dependency-groups]
+dev = ["pytest>=8,<10", "playwright>=1.49,<2"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
