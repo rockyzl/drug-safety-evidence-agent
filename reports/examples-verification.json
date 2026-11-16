@@ -23,5 +23,54 @@
       "no JavaScript errors"
     ]
   },
-  "cloud_browser": "pending deployment"
+  "cloud_browser": {
+    "url": "https://drug-safety-evidence-agent-1038659864130.us-central1.run.app",
+    "checks": [
+      "six saved examples without model calls",
+      "question and cutoff follow selected example",
+      "historical and empty-source examples",
+      "keyboard example selection",
+      "edited question clears selection",
+      "example switching disabled during live run",
+      "unknown example returns 404",
+      "saved actual run",
+      "expand citation",
+      "live model run",
+      "actual tool trace",
+      "all three source sections have supported claims",
+      "preloaded-index labeling",
+      "390px no overflow",
+      "429 recovery",
+      "raw corpus unavailable",
+      "no JavaScript errors"
+    ]
+  },
+  "deployment": {
+    "url": "https://drug-safety-evidence-agent-1038659864130.us-central1.run.app",
+    "revision": "drug-safety-evidence-agent-00004-4vv",
+    "traffic_percent": 100,
+    "source_commit": "77c6d22",
+    "image_digest": "sha256:61ffb79a896951e31fb6c8966ad060b4aa9a1ddecc2cf68fc5427b2d9cbe2492",
+    "browser_checks": [
+      "six saved examples without model calls",
+      "question and cutoff follow selected example",
+      "historical and empty-source examples",
+      "keyboard example selection",
+      "edited question clears selection",
+      "example switching disabled during live run",
+      "unknown example returns 404",
+      "saved actual run",
+      "expand citation",
+      "live model run",
+      "actual tool trace",
+      "all three source sections have supported claims",
+      "preloaded-index labeling",
+      "390px no overflow",
+      "429 recovery",
+      "raw corpus unavailable",
+      "no JavaScript errors"
+    ]
+  },
+  "verified_at": "2026-11-16T05:06:05.529303+00:00",
+  "visual_review": "Desktop example grid and 390px mobile selector inspected."
 }

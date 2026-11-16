@@ -6,6 +6,13 @@
   },
   "evaluation": "reports/evaluation.json",
   "local_browser_checks": [
+    "six saved examples without model calls",
+    "question and cutoff follow selected example",
+    "historical and empty-source examples",
+    "keyboard example selection",
+    "edited question clears selection",
+    "example switching disabled during live run",
+    "unknown example returns 404",
     "saved actual run",
     "expand citation",
     "live model run",
@@ -19,6 +26,62 @@
   ],
   "layout_followup": "FDA and label dates visible; accepted-check explanations collapsed; 390px coverage layout inspected.",
   "cloud_verification": {
+    "url": "https://drug-safety-evidence-agent-1038659864130.us-central1.run.app",
+    "revision": "drug-safety-evidence-agent-00004-4vv",
+    "traffic_percent": 100,
+    "source_commit": "77c6d22",
+    "image_digest": "sha256:61ffb79a896951e31fb6c8966ad060b4aa9a1ddecc2cf68fc5427b2d9cbe2492",
+    "browser_checks": [
+      "six saved examples without model calls",
+      "question and cutoff follow selected example",
+      "historical and empty-source examples",
+      "keyboard example selection",
+      "edited question clears selection",
+      "example switching disabled during live run",
+      "unknown example returns 404",
+      "saved actual run",
+      "expand citation",
+      "live model run",
+      "actual tool trace",
+      "all three source sections have supported claims",
+      "preloaded-index labeling",
+      "390px no overflow",
+      "429 recovery",
+      "raw corpus unavailable",
+      "no JavaScript errors"
+    ]
+  },
+  "prior_cloud_verification": {
+    "url": "https://drug-safety-evidence-agent-1038659864130.us-central1.run.app",
+    "revision": "drug-safety-evidence-agent-00001-g2z",
+    "image_digest": "sha256:a650548cfe1defa468e11dc8feaae379497f211e51a7809edf5692aaf260f1d6",
+    "browser_checks": [
+      "saved actual run",
+      "expand citation",
+      "live model run",
+      "actual tool trace",
+      "390px no overflow",
+      "429 recovery",
+      "raw corpus unavailable",
+      "no JavaScript errors"
+    ],
+    "config_http_status": 200,
+    "example_http_status": 200,
+    "evaluation_http_status": 200,
+    "public_health_note": "External /healthz returned an HTML 404; public readiness was verified through /api/config and a real browser agent run. Local /healthz is available."
+  },
+  "provider_issue": {
+    "code": "credit_balance_exhausted",
+    "effect": "Historical OpenAI quota exhaustion. Resolved for the live demo by switching both generation and embeddings to Vertex AI; the public live workflow was verified after deployment.",
+    "detected_during": "v2 final evaluation"
+  },
+  "current_provider": "vertex",
+  "current_model": "google/gemini-3.8-flash",
+  "embedding_provider": "vertex",
+  "embedding_model": "text-embedding-005",
+  "runtime_smoke": "reports/vertex-smoke.json",
+  "verified_at": "2026-11-16T05:06:05.529529+00:00",
+  "prior_vertex_cloud_verification": {
     "url": "https://drug-safety-evidence-agent-1038659864130.us-central1.run.app",
     "revision": "drug-safety-evidence-agent-00003-n2q",
     "traffic_percent": 100,
@@ -53,34 +116,6 @@
       }
     }
   },
-  "prior_cloud_verification": {
-    "url": "https://drug-safety-evidence-agent-1038659864130.us-central1.run.app",
-    "revision": "drug-safety-evidence-agent-00001-g2z",
-    "image_digest": "sha256:a650548cfe1defa468e11dc8feaae379497f211e51a7809edf5692aaf260f1d6",
-    "browser_checks": [
-      "saved actual run",
-      "expand citation",
-      "live model run",
-      "actual tool trace",
-      "390px no overflow",
-      "429 recovery",
-      "raw corpus unavailable",
-      "no JavaScript errors"
-    ],
-    "config_http_status": 200,
-    "example_http_status": 200,
-    "evaluation_http_status": 200,
-    "public_health_note": "External /healthz returned an HTML 404; public readiness was verified through /api/config and a real browser agent run. Local /healthz is available."
-  },
-  "provider_issue": {
-    "code": "credit_balance_exhausted",
-    "effect": "Historical OpenAI quota exhaustion. Resolved for the live demo by switching both generation and embeddings to Vertex AI; the public live workflow was verified after deployment.",
-    "detected_during": "v2 final evaluation"
-  },
-  "current_provider": "vertex",
-  "current_model": "google/gemini-3.8-flash",
-  "embedding_provider": "vertex",
-  "embedding_model": "text-embedding-005",
-  "runtime_smoke": "reports/vertex-smoke.json",
-  "verified_at": "2026-11-16T04:46:52.747967+00:00"
+  "examples_manifest": "reports/examples-manifest.json",
+  "examples_verification": "reports/examples-verification.json"
 }
