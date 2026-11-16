@@ -11,3 +11,7 @@ The GitHub design-tool review considered:
 - [21st Magic MCP](https://github.com/21st-dev/magic-mcp): reviewed, not installed; it requires separate service configuration and was unnecessary with Paper already connected.
 
 The shipped interface has English copy, visible keyboard focus, mobile layout, reduced-motion support, self-hosted IBM Plex fonts (OFL license alongside font files), and no decorative stock imagery. Screen widths of 1440 and 390 pixels are checked with Playwright.
+
+## Safety-brief revision
+
+The Paper canvas was updated to foreground three perspectives: study evidence, FDA communication and the indexed prescribing information. The source drawer also gained a label entry. A screenshot checkpoint verified the revised heading and workspace. Paper then reported its weekly MCP limit, preventing the final screenshot and JSX export; `paper-export.jsx` remains the original v1 export. The finish-work tool succeeded. Code reuses the original style values and adds source coverage and section headings; the actual website is verified in desktop and mobile browsers.

@@ -1,38 +1,40 @@
-# Evaluation record
+# Safety-brief evaluation (v2)
 
-Executed with real OpenAI API calls, gpt-4.1-mini and text-embedding-3-small, on November 15–16, 2026. The case file was written before the evaluation batch; no prompts were changed in response to held-out results. The initial exploratory run informed the quoting prompt before this frozen batch.
+Version: `safety-brief-v2`. Real OpenAI calls with `gpt-4.1-mini` and `text-embedding-3-small`. The complete case results and execution fingerprint are in [reports/evaluation.json](../reports/evaluation.json).
 
-## Cases and results
+## What changed
 
-30 author-designed questions: 6 development and 24 held out. Expectations specify sources, cutoff behavior or abstention, not independently annotated clinical gold answers. This is a small engineering evaluation, not a validated medical benchmark.
+The default workflow requests a drug-safety-team brief. It retrieves research, FDA communication and label sources separately; claims are categorized and checked against the appropriate source type. A cross-source interpretation needs research plus FDA or label evidence. The UI keeps retrieved-document counts separate from accepted-claim counts and shows gaps explicitly.
+
+OpenAI calls now use structured output schemas. Personal risk/treatment requests also pass through a conservative English-language gate before model planning. Model-based scope checks remain in place for other requests. The gate can have false positives and is not a comprehensive medical intent classifier.
+
+## Recorded results
 
 | Measure | Result |
 |---|---:|
-| Completed live runs | 30 / 30 |
-| Development / held-out cases | 6 / 24 |
-| Drafted claims | 116 |
-| Claims passing mechanical checks before semantic verification | 103 / 116 |
-| Claims published after both checks | 100 / 116 |
-| Published claims passing ID, exact-quote and date checks | 100 / 100 |
-| Retrieved sources exceeding cutoff | 0 |
-| Out-of-scope cases producing no published claim | 5 / 5 |
-| Cases retrieving all author-expected sources | 23 / 23 |
-| Median runtime | 9.73 seconds |
+| Completed cases | 34 / 36 |
+| Drafted claims | 138 |
+| Passing mechanical checks before model-support filtering | 116 |
+| Published claims | 101 |
+| Published claims passing citation/category/date checks | 101 / 101 |
+| Withheld claims | 37 |
+| Retrieved sources newer than cutoff | 0 |
+| Out-of-scope questions publishing no claims | 6 / 6 |
+| Cases retrieving the author-expected sources | 25 / 27 |
+| Median runtime | 8.66 seconds |
 
-Development: 24 drafted, 20 passed mechanical checks, 20 published. Held out: 92 drafted, 83 passed mechanical checks, 80 published. No-source cutoff cases also abstained.
+These are 36 author-designed **regression** cases, not an untouched holdout benchmark. The case file retains its original development/held_out grouping for traceability, but this is not evidence of unseen-test performance. An earlier v2 run produced general research answers for three personal-treatment/risk prompts; that failure informed the scope gate. The earlier report is retained in `reports/archive/v2-before-scope-gate/`.
 
-The paired comparison uses the **same draft and retrieved passages**: mechanical checks alone admitted 103 claims; adding the model support assessment admitted 100. Three further claims were withheld by the semantic layer. Thirteen failed mechanical checks, chiefly nonmatching quoted text. This measures filter behavior, **not a reduction in independently measured hallucinations**. A correct claim can be withheld because its quote is malformed; an incorrect claim can still pass a model verifier.
+The first attempt with the final code completed 34/36 cases: `brief-04` and `brief-06` returned `RateLimitError`; a subsequent probe identified `credit_balance_exhausted` (insufficient quota). That report is retained in `reports/archive/v2-first-final-attempt/`. The two cases remained incomplete on retry. Only failed cases were retried; successful states were reused without rerunning or cherry-picking answers. Current incomplete cases: [('brief-04', 'RateLimitError'), ('brief-06', 'RateLimitError')].
 
-The 100/100 published-citation result is an expected gate invariant, not independent accuracy evidence. Source retrieval expectations only check that a source was found, not that the best passages were ranked first or that a complete answer was produced. The verifier uses the same model family as the drafter, and thus may share its errors.
+Completed runs that drafted claims but published none: test-03, test-06, brief-03. Missing/partial verifier judgments or failed checks can leave an in-scope question without a usable answer. Such gaps remain visible. Passing the pipeline is not a guarantee of complete or correct scientific interpretation.
+
+Mechanical checks are a gate invariant, not a clinical accuracy score. The paired mechanical-only versus final counts use the same drafted claims and passages; they measure filtering behavior, not an independently measured hallucination reduction. Source expectations check document retrieval, not complete passage coverage. A matching quote does not prove a whole claim, and the drafter/verifier use the same model family.
 
 ## Reproduction
 
-1. Install dependencies and prepare the corpus/index as in the README.
-2. Run `uv run pytest -q` for deterministic fail-closed checks and the stubbed Bedrock request contract.
-3. Run `uv run python scripts/evaluate.py`. This makes paid API calls and resumes from local `reports/raw/evaluation/` results. To produce a fresh run, move that directory aside first.
-4. Inspect `reports/evaluation.json` for case-level results and corpus/case hashes. Raw model states are kept locally and excluded from Git.
-5. Run `uv run python scripts/browser_smoke.py <URL>` to exercise saved and live results, citations, tool traces, mobile overflow and error recovery. It makes one additional live model request.
+- `uv run pytest -q`: 29 deterministic tests, including source-category separation, missing/ambiguous verification, quote/date checks, personal-request routing and a stubbed Bedrock request contract.
+- `uv run python scripts/evaluate.py`: executes paid model calls. It resumes only from raw states whose fingerprint matches the case file, pipeline source, corpus and model configuration. Raw states are excluded from Git.
+- `uv run python scripts/browser_smoke.py <URL>`: saved and real live runs, all three source sections, tool trace, preload labeling, mobile overflow, error recovery, and no raw corpus endpoint.
 
-The retained saved example comes from `dev-01`, the comparison question. It is an actual recorded model run and includes one withheld claim; it is not hand-written to appear flawless.
-
-Unit tests cover invented IDs, mismatched/empty quotes, absent citations, future source dates, ambiguous/missing/partial verifier judgments, a verifier outage, out-of-scope graph routing, public excerpt limits, and Bedrock request/response structure. Bedrock tests use a stub; AWS execution has not been verified.
+The saved example comes from `brief-01`, an actual recorded model run. It is explicitly labeled. Bedrock has not been live-verified. The data are still preloaded FDA/DailyMed/PubMed snapshots; this evaluation does not test live internet discovery.

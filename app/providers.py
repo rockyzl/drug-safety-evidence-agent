@@ -26,22 +26,27 @@ class Model:
         system += "\nReturn only a JSON object matching this schema: " + json.dumps(schema.model_json_schema())
         message = json.dumps(payload, ensure_ascii=False)
         if self.provider == "openai":
-            response = self.client.chat.completions.create(
-                model=self.model, temperature=0, max_tokens=2600,
-                response_format={"type": "json_object"},
+            response = self.client.chat.completions.parse(
+                model=self.model, temperature=0, max_tokens=3600,
+                response_format=schema,
                 messages=[{"role": "system", "content": system}, {"role": "user", "content": message}],
             )
             text = response.choices[0].message.content
+            parsed = response.choices[0].message.parsed
+            if parsed is None:
+                raise ValueError('The model did not return the required structured result.')
             usage = {"input_tokens": response.usage.prompt_tokens, "output_tokens": response.usage.completion_tokens}
         else:
             response = self.client.converse(
                 modelId=self.model, system=[{"text": system}],
                 messages=[{"role": "user", "content": [{"text": message}]}],
-                inferenceConfig={"temperature": 0, "maxTokens": 2600},
+                inferenceConfig={"temperature": 0, "maxTokens": 3600},
             )
             text = "".join(item.get("text", "") for item in response["output"]["message"]["content"])
             usage = {"input_tokens": response.get("usage", {}).get("inputTokens", 0), "output_tokens": response.get("usage", {}).get("outputTokens", 0)}
         self.usage.append({"stage": schema.__name__, **usage, "seconds": round(time.monotonic()-started, 3)})
+        if self.provider == 'openai':
+            return parsed
         if text.strip().startswith("```"):
             text = text.strip().split("\n", 1)[1].rsplit("```", 1)[0]
         return schema.model_validate_json(text)

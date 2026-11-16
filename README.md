@@ -1,6 +1,6 @@
 # Evidence Desk
 
-A working, source-linked drug-safety research demo built as an independent learning project. Ask about the apparent difference between ORAL Surveillance and STAR-RA, then inspect the model's search decisions, claim checks and original sources.
+A working, source-linked drug-safety research demo built as an independent learning project. Prepare a brief for a drug-safety team by comparing study findings, an FDA communication and indexed prescribing information. Inspect the model's search decisions, claim checks and original sources.
 
 **Live demo:** [Open Evidence Desk](https://drug-safety-evidence-agent-1038659864130.us-central1.run.app)  
 **Design:** [Paper canvas](https://app.paper.design/file/01M7GZ4X3RT3H1KPN7BEJK659S)
@@ -9,9 +9,9 @@ A working, source-linked drug-safety research demo built as an independent learn
 
 ## Try it
 
-1. Open the live demo and select **Try a saved example** for an immediate, clearly labeled recorded model run.
+1. Open the live demo and select **Try a saved example** for a recorded real safety-team briefing. Study evidence, FDA communication, prescribing information and cross-source interpretation appear separately.
 2. Select **Run agent** for a new real model call. The page shows actual server progress.
-3. Expand a source under a claim. Open the original document to inspect its context.
+3. Check **Source coverage**: documents retrieved and claims accepted are counted separately. Expand a source under a claim to inspect its context.
 4. Inspect any withheld claims and the agent's tool calls.
 
 The live model is **OpenAI gpt-4.1-mini**, with **text-embedding-3-small** embeddings. A real LangGraph workflow selects bounded search-tool calls, retrieves evidence from Chroma, drafts cited claims, and checks each claim before including it. This is a research prototype, not clinical decision support.
@@ -67,9 +67,9 @@ Anonymous usage is limited to two active runs, 20 runs/hour and 80/day per proce
 
 ## Validation and limits
 
-30/30 live evaluation cases completed. The pipeline withheld 16 of 116 drafted claims; 100 published claims passed mechanical citation checks. Five out-of-scope prompts abstained. These are engineering checks, **not clinical accuracy scores**. The same model family generates and verifies, which limits independence. [Full evaluation](docs/evaluation.md).
+34/36 regression cases completed; 37 of 138 drafted claims were withheld and 6/6 out-of-scope prompts produced no published claims. Two provider failures were retained in the report history; a subsequent probe reported `credit_balance_exhausted`. Recorded examples remain available while live requests require an available model quota. These are engineering checks, **not clinical accuracy scores**. The same model family generates and verifies. [Full evaluation](docs/evaluation.md).
 
-No patient information, internal pharmaceutical data, safety submissions or production pharmacovigilance integrations are used. Do not submit patient or confidential information. Date filtering excludes newer indexed versions; it does not reconstruct historical pages. Review original sources before using a result.
+No patient information, internal pharmaceutical data, safety submissions or production pharmacovigilance integrations are used. Do not submit patient or confidential information. Each live run searches a **preloaded Chroma index**, not the live web. Date filtering excludes newer indexed versions; it does not reconstruct historical pages. Review original sources before using a result.
 
 - [中文五分钟演示讲稿](docs/walkthrough.zh.md)
 - [Architecture and interview explanation](docs/architecture.md)

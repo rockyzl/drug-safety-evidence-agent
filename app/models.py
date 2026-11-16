@@ -6,6 +6,7 @@ from pydantic import BaseModel, Field
 class Ask(BaseModel):
     question: str = Field(min_length=8, max_length=1200)
     as_of: date = Field(default_factory=date.today)
+    mode: Literal['research_question', 'safety_brief'] = 'safety_brief'
 
 
 class Search(BaseModel):
@@ -25,12 +26,13 @@ class Citation(BaseModel):
 
 
 class Claim(BaseModel):
+    section: Literal['research', 'regulatory', 'label', 'synthesis']
     text: str = Field(min_length=5, max_length=550)
-    citations: list[Citation] = Field(min_length=1, max_length=3)
+    citations: list[Citation] = Field(min_length=1, max_length=5)
 
 
 class Draft(BaseModel):
-    claims: list[Claim] = Field(default_factory=list, max_length=6)
+    claims: list[Claim] = Field(default_factory=list, max_length=8)
     limitations: list[str] = Field(default_factory=list, max_length=4)
 
 

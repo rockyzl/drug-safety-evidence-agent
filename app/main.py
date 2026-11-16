@@ -12,7 +12,7 @@ from pathlib import Path
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import FileResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
-from .agent import EvidenceAgent
+from .agent import EvidenceAgent, DEFAULT_QUESTION, PIPELINE_VERSION
 from .models import Ask
 from .retrieval import EvidenceStore
 
@@ -53,13 +53,16 @@ def home():
 
 
 @app.get('/healthz')
+@app.get('/api/health')
 def health():
     return {'status': 'ok', 'sources': len(store.sources), 'passages': len(store.passages)}
 
 
 @app.get('/api/config')
 def config():
-    return {'provider': os.getenv('EVIDENCE_PROVIDER', 'openai'),
+    return {'pipeline_version':PIPELINE_VERSION, 'default_question':DEFAULT_QUESTION,
+            'retrieval_mode':'preloaded_index','snapshot_loaded_at':store.corpus['retrieved_at'],
+            'provider': os.getenv('EVIDENCE_PROVIDER', 'openai'),
             'model': os.getenv('BEDROCK_MODEL_ID', '') if os.getenv('EVIDENCE_PROVIDER') == 'bedrock' else os.getenv('EVIDENCE_MODEL', 'gpt-4.1-mini'),
             'sources': list(store.sources.values()), 'passage_count': len(store.passages),
             'bedrock_status': 'Adapter available; not live-verified in this deployment.'}
@@ -97,11 +100,12 @@ async def ask(body: Ask, request: Request):
 
     def work():
         try:
-            state = EvidenceAgent(store, emit=events.put).run(body.question, body.as_of.isoformat())
+            state = EvidenceAgent(store, emit=events.put).run(body.question, body.as_of.isoformat(), body.mode)
             events.put({'type': 'result', 'result': state['result']})
-        except Exception:
+        except Exception as error:
             # Never leak provider responses, request headers, credentials, or raw documents.
-            events.put({'type': 'error', 'message': 'The live run could not finish. Please retry or inspect the saved example. No new brief was approved.'})
+            message = 'The model provider cannot accept this run because of its quota. Please use the saved example.' if type(error).__name__ == 'RateLimitError' else 'The live run could not finish. Please retry or inspect the saved example. No new brief is available.'
+            events.put({'type': 'error', 'message': message})
         finally:
             events.put(None)
             slots.release()

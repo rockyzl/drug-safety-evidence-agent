@@ -1,6 +1,7 @@
 """Frozen case set. Structural/process checks, not a clinical accuracy benchmark."""
 import concurrent.futures
 import hashlib
+import os
 import json
 import statistics
 import sys
@@ -8,14 +9,16 @@ from datetime import datetime, timezone
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
-from app.agent import EvidenceAgent, check_citations
+from app.agent import EvidenceAgent, check_citations, PIPELINE_VERSION
 from app.retrieval import EvidenceStore
 
 
 def main():
     cases_path=ROOT/'eval/cases.json'
     cases=json.loads(cases_path.read_text())
-    raw=ROOT/'reports/raw/evaluation';raw.mkdir(parents=True,exist_ok=True)
+    corpus_hash=json.loads((ROOT/'app/data/source-manifest.json').read_text())['corpus_sha256']
+    fingerprint=hashlib.sha256(cases_path.read_bytes()+b''.join((ROOT/'app'/name).read_bytes() for name in ['agent.py','models.py','retrieval.py','providers.py'])+corpus_hash.encode()+os.getenv('EVIDENCE_PROVIDER','openai').encode()+os.getenv('EVIDENCE_MODEL','gpt-4.1-mini').encode()+os.getenv('BEDROCK_MODEL_ID','').encode()).hexdigest()
+    raw=ROOT/'reports/raw/evaluation'/fingerprint;raw.mkdir(parents=True,exist_ok=True)
     store=EvidenceStore()
 
     def run(case):
@@ -24,7 +27,7 @@ def main():
             if path.exists():
                 state=json.loads(path.read_text())
             else:
-                state=EvidenceAgent(store).run(case['question'],case['as_of'])
+                state=EvidenceAgent(store).run(case['question'],case['as_of'],case.get('mode','research_question'))
                 path.write_text(json.dumps(state,indent=2))
             r=state['result'];accepted=[c for c in r['claims'] if c['included_in_brief']]
             raw_claims=state.get('draft',{}).get('claims',[])
@@ -32,13 +35,15 @@ def main():
             published_indexes=[c['claim_index'] for c in accepted]
             retrieved_ids={p['source_id'] for p in state.get('evidence',[])}
             metrics={'id':case['id'],'split':case['split'],'category':case['category'],'completed':True,
+                'mode':r['mode'],'provider':r['provider'],'model':r['model'],
+                'brief_complete':r['brief_complete'],'coverage':r['coverage'] if r['mode']=='safety_brief' else None,
                 'drafted':len(raw_claims),'baseline_mechanical_passes':sum(mechanical),
                 'published':len(accepted),'citation_checks_passed':sum(mechanical[i] for i in published_indexes),
                 'future_sources':sum(p['published']>case['as_of'] for p in state.get('evidence',[])),
                 'expected_source_retrieval':all(x in retrieved_ids for x in case.get('sources',[])) if case.get('sources') else None,
                 'expected_abstention_met':not accepted if case.get('abstain') else None,
                 'seconds':r['elapsed_seconds']}
-            if case['id']=='dev-01':
+            if case['id']=='brief-01':
                 (ROOT/'reports/saved-example.json').write_text(json.dumps(r,indent=2)+'\n')
             print(json.dumps(metrics),flush=True)
             return metrics
@@ -47,14 +52,16 @@ def main():
             print(json.dumps(row),flush=True)
             return row
 
-    with concurrent.futures.ThreadPoolExecutor(max_workers=2) as pool:
+    with concurrent.futures.ThreadPoolExecutor(max_workers=max(1,min(2,int(os.getenv("EVAL_WORKERS","1"))))) as pool:
         rows=list(pool.map(run,cases))
     done=[r for r in rows if r['completed']]
     outside=[r for r in done if r['category']=='out_of_scope']
-    report={'created_at':datetime.now(timezone.utc).isoformat(),'provider':'openai','model':'gpt-4.1-mini',
+    report={'created_at':datetime.now(timezone.utc).isoformat(),'pipeline_version':PIPELINE_VERSION,'evaluation_fingerprint':fingerprint,
+        'provider':done[0]['provider'] if done else None,'model':done[0]['model'] if done else None,
         'case_file_sha256':hashlib.sha256(cases_path.read_bytes()).hexdigest(),
         'corpus_sha256':json.loads((ROOT/'app/data/source-manifest.json').read_text())['corpus_sha256'],
-        'total_cases':len(cases),'completed_cases':len(done),'development_cases':6,'held_out_cases':24,
+        'total_cases':len(cases),'completed_cases':len(done),
+        'development_cases':sum(c['split']=='development' for c in cases),'held_out_cases':0,'regression_cases':len(cases),
         'published_claims':sum(r['published'] for r in done),'citation_checks_passed':sum(r['citation_checks_passed'] for r in done),
         'drafted_claims':sum(r['drafted'] for r in done),'baseline_mechanical_passes':sum(r['baseline_mechanical_passes'] for r in done),
         'future_source_count':sum(r['future_sources'] for r in done),
@@ -63,7 +70,7 @@ def main():
         'expected_source_retrieval_passes':sum(r['expected_source_retrieval'] is True for r in done),
         'expected_source_retrieval_cases':sum(bool(c.get('sources')) for c in cases),
         'median_seconds':round(statistics.median(r['seconds'] for r in done),2) if done else None,
-        'caveat':'30 author-designed cases (6 development, 24 held out). These checks measure citation structure, date filtering and abstention, not clinical correctness. Source expectations were not independently clinician-annotated. The verifier uses the same model family as the drafter.',
+        'caveat':f"{len(cases)} author-designed cases. Checks measure reference structure, source categories, date filtering and abstention, not clinical correctness. All cases are now regression cases: an earlier v2 run informed the personal-request gate. There is no untouched holdout score. Source expectations were not clinician-annotated; drafter and verifier use the same model family.",
         'cases':rows}
     (ROOT/'reports/evaluation.json').write_text(json.dumps(report,indent=2)+'\n')
     print('REPORT',json.dumps({k:v for k,v in report.items() if k!='cases'}),flush=True)

@@ -1,22 +1,25 @@
 {
+  "pipeline_version": "safety-brief-v2",
   "unit_tests": {
-    "passed": 15,
+    "passed": 29,
     "command": "uv run pytest -q"
   },
+  "evaluation": "reports/evaluation.json",
   "local_browser_checks": [
-    "saved run",
-    "expanded source citation",
+    "saved actual run",
+    "expand citation",
     "live model run",
-    "tool trace",
-    "390px layout",
+    "actual tool trace",
+    "all three source sections have supported claims",
+    "preloaded-index labeling",
+    "390px no overflow",
     "429 recovery",
-    "raw corpus 404",
+    "raw corpus unavailable",
     "no JavaScript errors"
   ],
-  "layout_followup": "Mobile evaluation metric/label overlap corrected and bounding boxes checked.",
-  "browser": "Playwright with Chromium 1228, headless, GPU disabled for this WSL environment.",
-  "evaluation": "reports/evaluation.json",
-  "cloud_verification": {
+  "layout_followup": "FDA and label dates visible; accepted-check explanations collapsed; 390px coverage layout inspected.",
+  "cloud_verification": "pending v2 deployment",
+  "prior_cloud_verification": {
     "url": "https://drug-safety-evidence-agent-1038659864130.us-central1.run.app",
     "revision": "drug-safety-evidence-agent-00001-g2z",
     "image_digest": "sha256:a650548cfe1defa468e11dc8feaae379497f211e51a7809edf5692aaf260f1d6",
@@ -34,5 +37,10 @@
     "example_http_status": 200,
     "evaluation_http_status": 200,
     "public_health_note": "External /healthz returned an HTML 404; public readiness was verified through /api/config and a real browser agent run. Local /healthz is available."
+  },
+  "provider_issue": {
+    "code": "credit_balance_exhausted",
+    "effect": "OpenAI live calls currently fail; saved example remains available.",
+    "detected_during": "v2 final evaluation"
   }
 }
